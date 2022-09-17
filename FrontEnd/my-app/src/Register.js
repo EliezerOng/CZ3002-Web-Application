@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import "./Register.css";
 
 // [a-zA-Z]: start with lower/uppercase letter
 // followed by 3-23 chars that is [a-zA-Z0-9-_] (letters, numbers, -, _)
@@ -117,6 +118,16 @@ const Register = () => {
           <br />
           Letters, numbers, underscores, hyphens allowed.
         </p>
+
+        <label htmlFor="password">
+          Password:
+          <span className={validPwd ? "valid" : "hide"}>
+            <FontAwesomeIcon icon={faCheck} />
+          </span>
+          <span className={validPwd || !pwd ? "hide" : "invalid"}>
+            <FontAwesomeIcon icon={faTimes} />
+          </span>
+        </label>
       </form>
     </section>
   );
