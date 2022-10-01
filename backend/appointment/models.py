@@ -13,4 +13,7 @@ class Appointment(models.Model):
 class Counsellor(models.Model):
     counsellorID = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100)
+    languages = models.CharField(max_length=100)
+    description = models.CharField(max_length=300)
+    images = models.ImageField(upload_to="counsellorImage")
     address = models.CharField(max_length=300)

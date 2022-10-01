@@ -1,5 +1,13 @@
 from django.contrib import admin
 from . import models
 # Register your models here.
-admin.site.register(models.Appointment)
-admin.site.register(models.Counsellor)
+
+class AppointmentAdmin(admin.ModelAdmin):
+    readonly_fields = (id,)
+
+class CounsellorAdmin(admin.ModelAdmin):
+    readonly_fields = (id,)
+
+
+admin.site.register(models.Appointment, AppointmentAdmin)
+admin.site.register(models.Counsellor, CounsellorAdmin)
