@@ -20,11 +20,11 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     # Forum
-    path("api/forum/", include("forum.urls")),
+    path("api/forum", include("forum.urls")),
 
-    # Appointment
-    path("api/appointment/", include("appointment.urls")),
+    # # Appointment
+    # path("api/appointment/", include("appointment.urls")),
 
-    # django auth
-    path("api-auth/", include("rest_framework.urls"))
+    # # django auth
+    #path("api-auth/", include("rest_framework.urls")),
 ]

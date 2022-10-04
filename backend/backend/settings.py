@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "appointment",
     "authentication",
     "forum",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
