@@ -3,10 +3,10 @@ from . import models
 # Register your models here.
 
 class AppointmentAdmin(admin.ModelAdmin):
-    readonly_fields = (id,)
+    readonly_fields = ("appointmentID",)
 
 class CounsellorAdmin(admin.ModelAdmin):
-    readonly_fields = (id,)
+    readonly_fields = ("counsellorID",)
 
 
 admin.site.register(models.Appointment, AppointmentAdmin)

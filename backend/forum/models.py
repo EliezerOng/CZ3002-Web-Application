@@ -4,31 +4,27 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Post(models.Model):
-    pid = models.BigAutoField(primary_key=True)
-    uid = models.ForeignKey(User, on_delete=models.CASCADE)
+    postID = models.BigAutoField(primary_key=True)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=500)
     title = models.CharField(max_length=200)
     numLikes = models.IntegerField()
     numComments = models.IntegerField()
-    createdAt = models.DateTimeField()
+    createdAt = models.DateTimeField(auto_now_add=True) # Set dateTime to current dateTime
 
     class Meta:
         ordering = ["-createdAt"]
 
-    def __str__(self):
-        return f"Post: {self.pid}"
 
 class Like(models.Model):
-    pid = models.ForeignKey("Post", db_column="pid", on_delete=models.CASCADE)
-    uid = models.ForeignKey(User, on_delete=models.CASCADE)
+    postID = models.ForeignKey("Post", db_column="postID", on_delete=models.CASCADE)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    class Meta:
-        unique_together = ("pid", "uid") # Enforce 1 user can only like 1 post once
     
 class Comment(models.Model):
-    pid = models.ForeignKey("Post", db_column="pid", on_delete=models.CASCADE)
-    uid = models.ForeignKey(User, on_delete=models.CASCADE)
-    cid = models.BigAutoField(primary_key=True)
+    commentID = models.BigAutoField(primary_key=True)
+    postID = models.ForeignKey("Post", db_column="postID", on_delete=models.CASCADE)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=300)
 
 
