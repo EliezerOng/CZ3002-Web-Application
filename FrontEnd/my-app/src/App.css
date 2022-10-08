@@ -8,10 +8,10 @@
 .main-app-container {
   display: flex;
 }
-.forum-section {
-  margin-top: 10rem;
-  margin-left: 10rem;
-  margin-right: 10rem;
+.main-app-container .forum-section {
+  position: absolute;
+  top: 16rem;
+  left: 35rem;
   width: 70rem;
 }
 

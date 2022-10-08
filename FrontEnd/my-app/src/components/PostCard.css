@@ -2,7 +2,7 @@
   box-sizing: border-box;
   width: 60rem;
   max-width: 60rem;
-  height: 18rem;
+  height: 14rem;
   max-height: 20rem;
 }
 
@@ -22,37 +22,44 @@
   font-size: 1rem;
   font-weight: normal;
   margin-top: 1.2rem;
-  margin-left: 2rem;
+  margin-left: 2.1rem;
 }
 
 .post-card .main-container .container-1 .box-2 .user-dp {
   width: 3vw;
   height: 5vh;
   border-radius: 1.5rem;
-  margin-top: -0.5rem;
+  margin-top: 1.3rem;
 }
 
 .post-card .main-container .container-2 .post-description {
   width: 50rem;
   height: 5rem;
-  margin-left: 3rem;
+  margin-left: 2.1rem;
+  margin-bottom: 0;
+  margin-top: 0.2rem;
   font-size: 1.2rem;
   font-weight: normal;
 }
 
+.post-card .main-container .container-3 {
+  margin-top: -0.5rem;
+  padding: 0;
+}
+
 .post-card .main-container .container-3 .box-1 {
   display: flex;
-  margin-left: 48rem;
+  margin-left: 49rem;
 }
 
 .post-card .main-container .container-3 .box-1 .view-count-h1 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: normal;
   margin-left: 0.5rem;
 }
 
 .post-card .main-container .container-3 .box-1 .comment-counter-h1 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: normal;
   margin-left: 0.5rem;
 }
@@ -60,13 +67,13 @@
 .post-card .main-container .container-3 .box-1 .view-count-icon {
   width: auto;
   height: 2.8rem;
-  margin-top: 0.4rem;
+  margin-top: 0.2rem;
 }
 
 .post-card .main-container .container-3 .box-1 .comment-counter {
   width: auto;
   height: 1.8rem;
-  margin-top: 0.8rem;
+  margin-top: 0.7rem;
   margin-left: 3rem;
   margin-right: 0;
 }

@@ -2,24 +2,23 @@ import "./App.css";
 import SideBar from "./components/SideBar";
 import PostCard from "./components/PostCard";
 import PostCardData from "./PostCardData";
+import SideBarData from "./SideBarData";
+import Search from "./components/Search";
 
 export default function App() {
-  const nData = {
-    id: 1,
-    userName: "AnimatedFred",
-    displayPictureUrl: "https://i.imgflip.com/1g8my4.jpg",
-    email: "animated@demo.com",
-  };
+  const sideBarData = SideBarData.map((item) => {
+    return <SideBar key={item.id} {...item} />;
+  });
 
   const cards = PostCardData.map((item) => {
     return <PostCard key={item.id} {...item} />;
   });
 
   return (
-    <div>
-      <SideBar {...nData} />
-      {/* <section className="forum-section">{cards}</section> */}
+    <div className="main-app-container">
+      <Search />
+      {/* <sidebar>{sideBarData}</sidebar>
+      <section className="forum-section">{cards}</section> */}
     </div>
-    // <div className="forum-section">{cards}</div>
   );
 }
