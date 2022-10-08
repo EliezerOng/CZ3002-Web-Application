@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <main className="App">
+      <div className="left-image"></div>
       <Register />
     </main>
   );
