@@ -16,9 +16,9 @@ export default function App() {
 
   return (
     <div className="main-app-container">
-      <Search />
-      {/* <sidebar>{sideBarData}</sidebar>
-      <section className="forum-section">{cards}</section> */}
+      {/* <Search /> */}
+      <sidebar>{sideBarData}</sidebar>
+      <section className="forum-section">{cards}</section>
     </div>
   );
 }
