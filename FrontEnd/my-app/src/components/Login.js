@@ -37,15 +37,32 @@ const Login = () => {
       </p>
       <h1>Sign In</h1>
       <form>
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">Username:</label>
         <input
           type="text"
           id="username"
+          //set focus on this input
           ref={userRef}
+          //dont fill username with past entries
           autoComplete="off"
           onChange={(e) => setUser(e.target.value)}
+          //to clear input upon submission
           value={user}
+          required
         />
+
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          //dont need set focus on pw directly
+          onChange={(e) => setPwd(e.target.value)}
+          //to clear input upon submission
+          value={pwd}
+          required
+        />
+        {/* dont need onclick bc its the only button in the form */}
+        <button>Sign In</button>
       </form>
     </section>
   );

@@ -7,10 +7,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./Register.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // backend
-import axios from "./api/axios";
+import axios from "../api/axios";
 const REGISTER_URL = "/register";
 
 // [a-zA-Z]: start with lower/uppercase letter
@@ -268,10 +268,7 @@ const Register = () => {
               Already Registered?
               <br />
               <span className="line">
-                <a href="/Login" className="sign-in-link">
-                  Sign In
-                </a>
-                {/* <Link to="/Login">Sign in</Link> */}
+                <Link to="/">Sign in</Link>
               </span>
             </p>
           </section>

@@ -6,9 +6,10 @@ import SideBarData from "./SideBarData";
 import Search from "./components/Search";
 
 import logo from "./logo.svg";
-import Login from "./Login";
-import Register from "./Register";
-// import { Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
   const sideBarData = SideBarData.map((item) => {
@@ -20,10 +21,15 @@ export default function App() {
   });
 
   return (
-    <main className="App">
-      <div className="left-image"></div>
-      <Register />
-    </main>
+    <Router>
+      <main className="App">
+        <div className="left-image"></div>
+        <Routes>
+          <Route path="/" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+        </Routes>
+      </main>
+    </Router>
 
     // <div className="main-app-container">
     //   {/* <Search /> */}
