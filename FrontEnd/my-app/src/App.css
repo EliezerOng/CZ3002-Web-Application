@@ -1,8 +1,16 @@
+* {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
 
 .side-bar {
+}
+
+.forum-section {
+  max-width: 60rem;
+  height: 75vh;
 }
 
 body {

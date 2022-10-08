@@ -1,7 +1,7 @@
-import Nav from "./components/Nav";
-import NavData from "./NavData";
 import "./App.css";
-import Sidebar from "./components/Sidebar";
+import SideBar from "./components/SideBar";
+import PostCard from "./components/PostCard";
+import PostCardData from "./PostCardData";
 
 export default function App() {
   const nData = {
@@ -11,9 +11,14 @@ export default function App() {
     email: "animated@demo.com",
   };
 
+  const cards = PostCardData.map((item) => {
+    return <PostCard key={item.id} {...item} />;
+  });
+
   return (
-    <div className="side-bar">
-      <Nav {...nData} />
-    </div>
+    // <div className="side-bar">
+    //   <SideBar {...nData} />
+    // </div>
+    <div className="forum-section">{cards}</div>
   );
 }
