@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import "./Register.css";
+import "./LoginRegister.css";
 import { Link } from "react-router-dom";
 
 // backend

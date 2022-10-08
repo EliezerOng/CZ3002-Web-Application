@@ -5,7 +5,7 @@ import PostCardData from "./PostCardData";
 import SideBarData from "./SideBarData";
 import Search from "./components/Search";
 
-import logo from "./logo.svg";
+import mindfullLogo from "./images/mindfull-logo.png";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
@@ -23,7 +23,9 @@ export default function App() {
   return (
     <Router>
       <main className="App">
-        <div className="left-image" />
+        <div className="left-image">
+          <img src={mindfullLogo} className="mindfull-logo" />
+        </div>
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>

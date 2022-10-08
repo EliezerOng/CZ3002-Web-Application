@@ -29,6 +29,8 @@ body {
   display: flex;
   background-color: aliceblue;
   flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .register,
@@ -83,6 +85,8 @@ textarea {
 
 .field-label {
   margin-top: 1rem;
+  margin-bottom: 5px;
+  text-align: left;
 }
 
 .sign-up,
