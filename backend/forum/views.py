@@ -7,8 +7,8 @@ from .serializer import PostSerializer, LikeSerializer,CommentSerializer
 from rest_framework.parsers import JSONParser
 # Create your views here.
 
-# Class based view for listing and creating Post APIs using ListCreateAPIView (GET,POST)
-class PostList(generics.ListCreateAPIView):
+# Class based view for listing and creating Post APIs using ListCreateAPIView (GET, POST)
+class PostListCreate(generics.ListCreateAPIView):
     serializer_class = PostSerializer
 
     # Enforces that only authenticated user can access this API
@@ -27,7 +27,7 @@ class PostList(generics.ListCreateAPIView):
         # Define the poster to be the current user in POST
         serializer.save(poster=self.request.user)
 
-# Class based view for deleting Post APIs using RetrieveDestroyAPIView (GET, DELETE)
+# Class based view for retrieving and deleting Post APIs using RetrieveDestroyAPIView (GET, DELETE)
 class PostRetrieveDestroy(generics.RetrieveDestroyAPIView):
     serializer_class = PostSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -46,8 +46,9 @@ class PostRetrieveDestroy(generics.RetrieveDestroyAPIView):
             raise ValidationError('You did not create this post!')
 
 
-# Class based view for listing, creating, and deleting Votes APIs using ListCreateAPIView (GET and POST)
-class VoteCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
+# Class based view for listing and creating Like APIs using ListCreateAPIView (GET and POST)
+# Class based view for deleting Like APIs using DestroyModelMixin (DELETE)
+class LikeListCreateDestroy(generics.ListCreateAPIView, mixins.DestroyModelMixin):
     serializer_class = LikeSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
@@ -72,7 +73,7 @@ class VoteCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
             
         # Define the voter to be the current user in POST
         # Define the post to be the current post in POST
-        serializer.save(liker=self.request.user, post=Post.objects.get(pk=self.kwargs['pk']))
+        serializer.save(liker=user, post=post)
 
     # Function for user to delete a vote of a post (creates the delete button and logic)
     def delete(self, request, *args, **kwargs):
@@ -86,7 +87,8 @@ class VoteCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
             raise ValidationError('You never voted for this post!!')
 
 
-class CommentCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
+# Class based view for listing and creating Comment APIs using ListCreateAPIView (GET and POST)
+class CommentListCreate(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
@@ -111,9 +113,25 @@ class CommentCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
         # Define the post to be the current post in POST
         serializer.save(commenter=user, post=post)
 
-    # Function for user to delete a vote of a post (creates the delete button and logic)
+
+
+# Class based view for retrieving and deleting Comment APIs using ListAPIView and DestroyModelMixin (GET, DELETE)
+class CommentListDestroy(generics.ListAPIView, mixins.DestroyModelMixin):
+    serializer_class = CommentSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+    # Override this method to filter data from DB to display on API
+    # Display all comments for the corresponding post id
+    def get_queryset(self):
+        # user = self.request.user
+        post = Post.objects.get(pk=self.kwargs['pk']) # Get post based on primary key (PID) in query parameter
+        comment = Comment.objects.filter(post=post, cid=self.kwargs['cid'])
+        return comment
+
+
+    # Function for user to delete a comment of a post (creates the delete button and logic)
     def delete(self, request, *args, **kwargs):
-        # Check if user already voted for this post
+        # Check if user already commented for this post
         user = self.request.user
         post = Post.objects.get(pk=self.kwargs['pk'])
         if Comment.objects.filter(commenter=user, post=post, cid=self.kwargs['cid']).exists():

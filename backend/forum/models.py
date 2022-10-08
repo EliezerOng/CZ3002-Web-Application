@@ -16,13 +16,13 @@ class Post(models.Model):
 
 
 class Like(models.Model):
-    post = models.ForeignKey("Post", db_column="post", on_delete=models.CASCADE)
+    post = models.ForeignKey("Post", db_column="pid", on_delete=models.CASCADE)
     liker = models.ForeignKey(User, on_delete=models.CASCADE)
 
     
 class Comment(models.Model):
     cid = models.BigAutoField(primary_key=True)
-    post = models.ForeignKey("Post", db_column="post", on_delete=models.CASCADE)
+    post = models.ForeignKey("Post", db_column="pid", on_delete=models.CASCADE)
     commenter = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=300)
 

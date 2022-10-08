@@ -1,10 +1,6 @@
 from rest_framework import serializers
-from django.core.serializers import serialize
 from .models import Post, Like, Comment
-from rest_framework.parsers import JSONParser
-from django.http import JsonResponse
-import jsonpickle
-import json
+
 # Create a serializer for the Post Model Class
 class PostSerializer(serializers.ModelSerializer):
     # We can define additional fields to display on serializer here
@@ -15,25 +11,29 @@ class PostSerializer(serializers.ModelSerializer):
     poster_id = serializers.ReadOnlyField(source="poster.id")
 
     # https://www.django-rest-framework.org/api-guide/fields/#serializermethodfield
-    # SerilizerMethodField() enables us to define a method to get values from another serializer
+    # SerilizerMethodField() enables us to define a method to get values from another model
     # I.e. likes will get its value from the method get_likes
     # likes will be a read-only field
     likes = serializers.SerializerMethodField()
     def get_likes(self, post):
         return Like.objects.filter(post=post).count()
 
+    # Use SerilizerMethodField() to get values from another model
     comments = serializers.SerializerMethodField()
     def get_comments(self,post):
         comments = Comment.objects.filter(post=post)
         if comments.exists():
-            comment_list = []
+            comment_dict = {}
             for i in range(len(comments)):
-                comment_list.append(comments[i].content)
-
-            print(len(comment_list))
-            return comment_list
+                commenter = str(comments[i].commenter)
+                content = comments[i].content
+                if commenter in comment_dict:
+                    comment_dict[commenter].append(content)
+                else:
+                    comment_dict[commenter] = [content]
+            return comment_dict
         else:
-            return []
+            return {}
 
     class Meta:
         model = Post
