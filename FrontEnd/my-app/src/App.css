@@ -5,12 +5,14 @@
   text-align: center;
 }
 
-.side-bar {
+.main-app-container {
+  display: flex;
 }
-
 .forum-section {
-  max-width: 60rem;
-  height: 75vh;
+  margin-top: 10rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  width: 70rem;
 }
 
 body {

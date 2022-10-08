@@ -16,9 +16,10 @@ export default function App() {
   });
 
   return (
-    // <div className="side-bar">
-    //   <SideBar {...nData} />
-    // </div>
-    <div className="forum-section">{cards}</div>
+    <div>
+      <SideBar {...nData} />
+      {/* <section className="forum-section">{cards}</section> */}
+    </div>
+    // <div className="forum-section">{cards}</div>
   );
 }
