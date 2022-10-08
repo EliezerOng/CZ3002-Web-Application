@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./Register.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 // [a-zA-Z]: start with lower/uppercase letter
 // followed by 3-23 chars that is [a-zA-Z0-9-_] (letters, numbers, -, _)
