@@ -20,14 +20,14 @@ export default function App() {
   });
 
   return (
-    <main className="App">
-      <Register />
-    </main>
+    // <main className="App">
+    //   <Register />
+    // </main>
 
-    // <div className="main-app-container">
-    //   {/* <Search /> */}
-    //   <sidebar>{sideBarData}</sidebar>
-    //   <section className="forum-section">{cards}</section>
-    // </div>
+    <div className="main-app-container">
+      {/* <Search /> */}
+      <sidebar>{sideBarData}</sidebar>
+      <section className="forum-section">{cards}</section>
+    </div>
   );
 }

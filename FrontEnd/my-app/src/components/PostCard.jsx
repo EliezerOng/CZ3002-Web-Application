@@ -29,6 +29,8 @@ export default function PostCard(props) {
               className="view-count-icon"
             />
             <h1 className="view-count-h1">{props.viewCount}</h1>
+          </div>
+          <div className="box-2">
             <img
               src={commentCounter}
               alt="comment-counter"
