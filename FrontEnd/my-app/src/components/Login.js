@@ -1,5 +1,6 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const userRef = useRef();
@@ -24,47 +25,81 @@ const Login = () => {
     setErrMsg("");
   }, [user, pwd]);
 
-  return (
-    <section>
-      {/*error msg display*/}
-      {/*aria-live=assertive: screen reader announce msg immediately when focus is set on this para*/}
-      <p
-        ref={errRef}
-        className={errMsg ? "errmsg" : "offscreen"}
-        aria-live="assertive"
-      >
-        {errMsg}
-      </p>
-      <h1>Sign In</h1>
-      <form>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          //set focus on this input
-          ref={userRef}
-          //dont fill username with past entries
-          autoComplete="off"
-          onChange={(e) => setUser(e.target.value)}
-          //to clear input upon submission
-          value={user}
-          required
-        />
+  const handleSubmit = async (e) => {
+    // default is to reload the page
+    e.preventDefault();
+    console.log(user, pwd);
+    //clear inputs
+    setUser("");
+    setPwd("");
+    setSuccess(true);
+  };
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          //dont need set focus on pw directly
-          onChange={(e) => setPwd(e.target.value)}
-          //to clear input upon submission
-          value={pwd}
-          required
-        />
-        {/* dont need onclick bc its the only button in the form */}
-        <button>Sign In</button>
-      </form>
-    </section>
+  return (
+    <div className="login">
+      {success ? (
+        <section>
+          <h1> You are logged in!</h1>
+          <br />
+          <p>
+            {/* link to forum */}
+            <a href="/">Go to Home</a>
+          </p>
+        </section>
+      ) : (
+        <section class="login-boxes">
+          {/*error msg display*/}
+          {/*aria-live=assertive: screen reader announce msg immediately when focus is set on this para*/}
+          <p
+            ref={errRef}
+            className={errMsg ? "errmsg" : "offscreen"}
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
+          <h1>Sign In</h1>
+          <form onSubmit={handleSubmit} className="login-form">
+            <label htmlFor="username" className="field-label">
+              Username:
+            </label>
+            <input
+              type="text"
+              id="username"
+              //set focus on this input
+              ref={userRef}
+              //dont fill username with past entries
+              autoComplete="off"
+              onChange={(e) => setUser(e.target.value)}
+              //to clear input upon submission
+              value={user}
+              required
+            />
+
+            <label htmlFor="password" className="field-label">
+              Password:
+            </label>
+            <input
+              type="password"
+              id="password"
+              //dont need set focus on pw directly
+              onChange={(e) => setPwd(e.target.value)}
+              //to clear input upon submission
+              value={pwd}
+              required
+            />
+            {/* dont need onclick bc its the only button in the form */}
+            <button className="sign-in">Sign In</button>
+          </form>
+          <p>
+            Need an Account?
+            <br />
+            <span className="line">
+              <Link to="/register">Sign Up</Link>
+            </span>
+          </p>
+        </section>
+      )}
+    </div>
   );
 };
 

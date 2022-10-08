@@ -23,7 +23,7 @@ export default function App() {
   return (
     <Router>
       <main className="App">
-        <div className="left-image"></div>
+        <div className="left-image" />
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
