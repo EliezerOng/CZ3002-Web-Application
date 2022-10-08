@@ -1,5 +1,23 @@
+* {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
+}
+
+.main-app-container {
+  display: flex;
+}
+.main-app-container .forum-section {
+  position: absolute;
+  top: 16rem;
+  left: 35rem;
+  width: 70rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .App-logo {
