@@ -3,8 +3,11 @@ import mindfullLogo from "../images/mindfull-logo.png";
 import viewCountIcon from "../images/view-icon.png";
 import commentCounter from "../images/comment-icon.png";
 import "./IndivPost.css";
+import { useState } from "react";
 
 const IndivPost = () => {
+  const [comment, setComment] = useState("");
+
   return (
     <div className="whole-page">
       <div className="post">
@@ -43,9 +46,40 @@ const IndivPost = () => {
             <div className="comment-count">3</div>
           </div>
         </div>
-      </div>
 
-      <div className="comment-section"></div>
+        {/* create another component?? how to map all comments? */}
+        <div className="comment-section">
+          <img
+            src={mindfullLogo}
+            alr="test-profile-pic"
+            className="profile-pic"
+          />
+          <div className="comment-container">
+            <div className="user-time-container">
+              <div className="username">user1</div>
+              <div className="timestamp">06:04am</div>
+            </div>
+            <div className="comment-content">
+              dkfjherih8 ioffiu iuhfanoifj oaihoaihfwoinsiadn
+            </div>
+          </div>
+        </div>
+
+        <form className="post-comment">
+          <img
+            src={mindfullLogo}
+            alr="test-profile-pic"
+            className="profile-pic-self image"
+          />
+          <input
+            onChange={(e) => setComment(e.target.value)}
+            //to clear input upon submission
+            // value={comment}
+            required
+          />
+          <button className="send-comment">Comment</button>
+        </form>
+      </div>
     </div>
   );
 };

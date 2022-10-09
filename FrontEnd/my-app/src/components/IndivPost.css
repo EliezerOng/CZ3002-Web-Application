@@ -1,6 +1,8 @@
 .whole-page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .post {
@@ -28,7 +30,7 @@
   padding: 3vh;
 }
 
-.timestamp,
+.post-content-wrap .timestamp,
 .details {
   padding: 0 3vh 3vh;
 }
@@ -38,7 +40,7 @@
   color: rgb(114, 114, 114);
 }
 
-.profile-pic {
+.whole-content .profile-pic {
   margin: 7vh 3vh;
   align-self: flex-start;
   max-width: 15vh;
@@ -63,4 +65,46 @@
   display: flex;
   justify-content: flex-end;
   gap: 4vh;
+}
+
+/* comment section */
+
+.user-container {
+  display: flex;
+}
+
+.user-time-container {
+  display: flex;
+}
+
+.comment-section {
+  display: flex;
+  padding: 5vh 5vw;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 5vw;
+  flex: 1;
+}
+
+.comment-content {
+  padding: 3vh;
+}
+
+.user-time-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.username {
+  font-weight: 600;
+  padding: 3vh;
+}
+
+.profile-pic {
+  max-width: 13vw;
+  max-height: 13vh;
 }
