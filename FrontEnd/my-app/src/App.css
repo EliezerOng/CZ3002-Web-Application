@@ -8,6 +8,23 @@
 .main-app-container {
   display: flex;
   flex-direction: row;
+  justify-content: start;
+}
+
+.main-app-container .sidebar {
+  width: 13vw;
+}
+
+.main-app-container .forum-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10%;
+}
+
+.main-app-container .forum-section .card {
+  /* margin-left: 10%; */
+  margin-top: 3%;
 }
 
 body {
