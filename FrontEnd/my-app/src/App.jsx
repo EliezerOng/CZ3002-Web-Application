@@ -12,15 +12,16 @@ import Register from "./components/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import IndivPost from "./components/IndivPost";
 
 export default function App() {
   const sideBarData = SideBarData.map((item) => {
     return <SideBar key={item.id} {...item} />;
   });
 
-  // const cards = PostCardData.map((item) => {
-  //   return <PostCard key={item.id} {...item} />;
-  // });
+  const cards = PostCardData.map((item) => {
+    return <PostCard key={item.id} {...item} />;
+  });
 
   const [data, setDate] = useState([]);
 
@@ -33,9 +34,9 @@ export default function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  const cards = data.map((data) => {
-    return <PostCard key={data.pid} {...data} />;
-  });
+  // const cards = data.map((data) => {
+  //   return <PostCard key={data.pid} {...data} />;
+  // });
 
   return (
     // <Router>
@@ -50,12 +51,12 @@ export default function App() {
     //   </main>
     // </Router>
 
-    <div className="main-app-container">
-      <sidebar className="sidebar">{sideBarData}</sidebar>
-      <div className="forum-section">
-        <Search />
-        <section className="card">{cards}</section>
-      </div>
-    </div>
+    // <div className="main-app-container">
+    //   {/* <Search /> */}
+    //   <sidebar>{sideBarData}</sidebar>
+    //   <section className="forum-section">{cards}</section>
+    // </div>
+
+    <IndivPost>{cards}</IndivPost>
   );
 }
