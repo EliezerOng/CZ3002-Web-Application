@@ -5,7 +5,7 @@
   height: 16rem;
   max-height: 14rem;
   margin-bottom: 1rem;
-  border-style: solid;
+  box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .post-card .main-container .container-1 {
