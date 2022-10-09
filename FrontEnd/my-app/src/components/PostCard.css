@@ -1,79 +1,101 @@
-.post-card .main-container {
+.post-card {
   box-sizing: border-box;
-  width: 60rem;
-  max-width: 60rem;
-  height: 14rem;
-  max-height: 20rem;
-}
-
-.post-card .main-container .container-1 {
+  width: 85%;
+  height: 32vh;
   display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.post-card .container-1 {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  margin-left: 3%;
+  margin-top: 1%;
+  margin-right: 2%;
 }
 
-.post-card .main-container .container-1 .box-1 .post-title {
-  font-size: 1.4rem;
-  width: 50rem;
-  font-weight: bold;
-  margin-left: 2rem;
+.post-card .container-1 .box-1 {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0;
 }
 
-.post-card .main-container .container-1 .box-1 .post-time {
+.post-card .container-1 .box-1 .post-title {
+  font-size: 1.2rem;
+  margin-bottom: 1%;
+}
+
+.post-card .container-1 .box-1 .post-time {
+  font-size: 0.8rem;
+  font-weight: normal;
+  padding: 0 0;
+  margin: 0 0;
+}
+
+.post-card .container-1 .user-dp {
+  width: 6%;
+  height: 5vh;
+  margin-top: 2%;
+}
+
+.post-card .container-2 {
+  margin-left: 3%;
+  margin-top: 1%;
+  padding-right: 10%;
+}
+
+.post-card .container-2 .post-time {
   font-size: 1rem;
   font-weight: normal;
-  margin-top: 1.2rem;
-  margin-left: 2.1rem;
 }
 
-.post-card .main-container .container-1 .box-2 .user-dp {
-  width: 3vw;
-  height: 5vh;
-  border-radius: 1.5rem;
-  margin-top: 1.3rem;
-}
-
-.post-card .main-container .container-2 .post-description {
-  width: 50rem;
-  height: 5rem;
-  margin-left: 2.1rem;
-  margin-bottom: 0;
-  margin-top: 0.2rem;
-  font-size: 1.2rem;
+.post-card .container-2 .post-description {
+  font-size: 0.9rem;
   font-weight: normal;
 }
 
-.post-card .main-container .container-3 {
-  margin-top: -0.5rem;
-  padding: 0;
-}
-
-.post-card .main-container .container-3 .box-1 {
+.post-card .container-3 {
   display: flex;
-  margin-left: 49rem;
+  flex-direction: row;
+  justify-content: end;
+  margin: 6% 1% 0 0;
 }
 
-.post-card .main-container .container-3 .box-1 .view-count-h1 {
-  font-size: 1.2rem;
+.post-card .container-3 .box-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 3%;
+}
+
+.post-card .container-3 .box-1 .like-count-icon {
+  height: 40%;
+  width: 2.8vh;
+  margin-right: 10%;
+}
+
+.post-card .container-3 .box-1 .like-count-h1 {
+  font-size: 90%;
   font-weight: normal;
-  margin-left: 0.5rem;
 }
 
-.post-card .main-container .container-3 .box-1 .comment-counter-h1 {
-  font-size: 1.2rem;
+.post-card .container-3 .box-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2%;
+}
+
+.post-card .container-3 .box-2 .comment-counter-icon {
+  height: 35%;
+  width: 2.5vh;
+  margin-right: 20%;
+}
+
+.post-card .container-3 .box-2 .comment-counter-h1 {
+  font-size: 90%;
   font-weight: normal;
-  margin-left: 0.5rem;
-}
-
-.post-card .main-container .container-3 .box-1 .view-count-icon {
-  width: auto;
-  height: 2.8rem;
-  margin-top: 0.2rem;
-}
-
-.post-card .main-container .container-3 .box-1 .comment-counter {
-  width: auto;
-  height: 1.8rem;
-  margin-top: 0.7rem;
-  margin-left: 3rem;
-  margin-right: 0;
 }
