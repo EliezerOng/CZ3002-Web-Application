@@ -18,6 +18,10 @@ class PostSerializer(serializers.ModelSerializer):
     def get_likes(self, post):
         return Like.objects.filter(post=post).count()
 
+    commentCount = serializers.SerializerMethodField()
+    def get_commentCount(self, post):
+        return Comment.objects.filter(post=post).count()
+
     # Use SerilizerMethodField() to get values from another model
     comments = serializers.SerializerMethodField()
     def get_comments(self,post):
@@ -37,7 +41,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ["pid", "title", "content", "poster", "poster_id", "createdAt", 'likes', 'comments'] # Choose fields to display on restAPI
+        fields = ["pid", "title", "content", "poster", "poster_id", "createdAt", 'likes', 'comments', 'commentCount'] # Choose fields to display on restAPI
 
 
 class LikeSerializer(serializers.ModelSerializer):
