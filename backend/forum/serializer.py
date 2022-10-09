@@ -41,9 +41,12 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class LikeSerializer(serializers.ModelSerializer):
+
+    liker = serializers.ReadOnlyField(source="liker.username") 
+    liker_id = serializers.ReadOnlyField(source="liker.id")
     class Meta:
         model = Like
-        fields = ['id']
+        fields = ['id', 'liker', 'liker_id',]
 
 class CommentSerializer(serializers.ModelSerializer):
     commenter = serializers.ReadOnlyField(source="commenter.username") 

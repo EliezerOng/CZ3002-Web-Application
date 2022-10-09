@@ -57,7 +57,7 @@ class LikeListCreateDestroy(generics.ListCreateAPIView, mixins.DestroyModelMixin
     def get_queryset(self):
         user = self.request.user
         post = Post.objects.get(pk=self.kwargs['pk']) # Get post based on primary key (PID) in query parameter
-        # return Vote.objects.filter(voter=user, post=post)
+        # return Like.objects.filter(liker=user, post=post)
         return Like.objects.filter(post=post)
 
     # Override this method to handle the object before saving into DB (POST)
