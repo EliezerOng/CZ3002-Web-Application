@@ -3,7 +3,7 @@ import SideBar from "./components/SideBar";
 import PostCard from "./components/PostCard";
 import PostCardData from "./PostCardData";
 import SideBarData from "./SideBarData";
-import Search from "./components/Search";
+import ForumHeader from "./components/ForumHeader";
 
 import mindfullLogo from "./images/mindfull-logo.png";
 import Login from "./components/Login";
@@ -53,7 +53,7 @@ export default function App() {
     <div className="main-app-container">
       <sidebar className="sidebar">{sideBarData}</sidebar>
       <div className="forum-section">
-        <Search />
+        <ForumHeader />
         <section className="card">{cards}</section>
       </div>
     </div>

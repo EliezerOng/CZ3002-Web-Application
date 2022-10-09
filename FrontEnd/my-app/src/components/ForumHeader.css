@@ -1,0 +1,16 @@
+.forumheader {
+  border: 2px solid blue;
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 5vh;
+}
+
+.search-input {
+  width: 60%;
+}
+.newpostbtn {
+  width: 20%;
+  cursor: pointer;
+}
