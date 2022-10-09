@@ -69,9 +69,10 @@ const IndivPost = () => {
           <img
             src={mindfullLogo}
             alr="test-profile-pic"
-            className="profile-pic-self image"
+            className="profile-pic image"
           />
           <input
+            id="comment-input"
             onChange={(e) => setComment(e.target.value)}
             //to clear input upon submission
             // value={comment}

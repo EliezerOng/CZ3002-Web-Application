@@ -36,7 +36,7 @@
 }
 
 .timestamp {
-  font-size: 2.5vh;
+  font-size: 3vh;
   color: rgb(114, 114, 114);
 }
 
@@ -86,7 +86,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-right: 5vw;
+  padding-right: 4vw;
   flex: 1;
 }
 
@@ -97,6 +97,7 @@
 .user-time-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .username {
@@ -107,4 +108,17 @@
 .profile-pic {
   max-width: 13vw;
   max-height: 13vh;
+}
+
+/* post comment */
+.post-comment {
+  display: flex;
+  padding: 3vw;
+  align-content: center;
+  justify-content: stretch;
+  gap: 3vw;
+}
+
+#comment-input {
+  width: 100%;
 }
