@@ -1,6 +1,6 @@
 .side-bar {
   box-sizing: border-box;
-  width: 15%;
+  width: 46%;
   height: 100vh;
   border-right: 1px solid rgba(124, 124, 122, 0.3);
 }
@@ -110,6 +110,11 @@
 
 .side-bar .container-3 {
   margin-top: 200%;
+}
+
+.side-bar .container-3 :hover {
+  cursor: pointer;
+  background: rgba(124, 124, 122, 0.2);
 }
 
 .side-bar .container-3 .logout-box {

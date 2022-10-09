@@ -7,13 +7,8 @@
 
 .main-app-container {
   display: flex;
+  flex-direction: row;
 }
-/* .main-app-container .forum-section {
-  position: absolute;
-  top: 16rem;
-  left: 35rem;
-  width: 70rem;
-} */
 
 body {
   margin: 0;

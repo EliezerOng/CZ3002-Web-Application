@@ -50,9 +50,9 @@ export default function App() {
     //   </main>
     // </Router>
 
-    <div>
+    <div className="main-app-container">
       {/* <Search /> */}
-      {/* <sidebar>{sideBarData}</sidebar> */}
+      <sidebar>{sideBarData}</sidebar>
       <section>{cards}</section>
     </div>
   );
