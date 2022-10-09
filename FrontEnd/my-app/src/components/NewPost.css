@@ -50,13 +50,18 @@
   /* border: 2px solid black; */
   width: 95%;
 }
-.input input {
+.Title input {
   width: 90%;
+  border: 2px solid black;
 }
-.Content input {
+.Content textarea {
+  width: 90%;
+
   height: 200px;
+  border: 2px solid black;
 }
 .submitbtn {
   margin-left: 85%;
   width: 100px;
+  cursor: pointer;
 }

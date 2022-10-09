@@ -11,14 +11,27 @@ const NewPost = (props) => {
         <div className="info">
           <p className="input Title">
             title:
-            <input type="text" name="title" id="title" />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={props.info.title}
+              onChange={props.handleChange}
+            />
           </p>
           <p className="input Content">
             content:
-            <input type="text" name="content" id="content" />
+            <textarea
+              id="content"
+              name="content"
+              value={props.info.content}
+              onChange={props.handleChange}
+            ></textarea>
           </p>
         </div>
-        <button className="submitbtn">submit</button>
+        <button className="submitbtn" onClick={props.handleUpdate}>
+          submit
+        </button>
       </div>
     </div>
   );

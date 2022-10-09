@@ -19,9 +19,9 @@ export default function App() {
     return <SideBar key={item.id} {...item} />;
   });
 
-  const cards = PostCardData.map((item) => {
-    return <PostCard key={item.id} {...item} />;
-  });
+  // const cards = PostCardData.map((item) => {
+  //   return <PostCard key={item.id} {...item} />;
+  // });
 
   const [data, setDate] = useState([]);
 
@@ -34,9 +34,9 @@ export default function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  // const cards = data.map((data) => {
-  //   return <PostCard key={data.pid} {...data} />;
-  // });
+  const cards = data.map((data) => {
+    return <PostCard key={data.pid} {...data} />;
+  });
 
   return (
     // <Router>
