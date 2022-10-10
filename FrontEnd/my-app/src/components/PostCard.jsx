@@ -12,7 +12,10 @@ export default function PostCard(props) {
       <div className="container-1">
         <div className="box-1">
           <h1 className="post-title"> {props.title}</h1>
-          <h1 className="post-time">{props.createdAt}</h1>
+          <h1 className="post-time">
+            <span>{props.createdAt.split("T")[1].split(".")[0]}</span>
+            <span>{props.createdAt.split("T")[0]}</span>
+          </h1>
         </div>
         <img src={props.displayPictureUrl} className="user-dp"></img>
       </div>

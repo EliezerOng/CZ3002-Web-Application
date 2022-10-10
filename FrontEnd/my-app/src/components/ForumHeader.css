@@ -20,7 +20,7 @@
   background-color: var(--theme);
   color: white;
   border: none;
-  border-radius: 0px;
+  border-radius: 5px;
   font-family: "Open Sans", sans-serif;
   padding: 0;
 }

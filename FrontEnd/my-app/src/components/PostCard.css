@@ -1,11 +1,14 @@
 .post-card {
   box-sizing: border-box;
   width: 70vw;
-  height: 32vh;
+  height: auto;
+  /* height: 32vh; */
   display: flex;
   flex-direction: column;
   box-shadow: 0px 0px 4px 2px #00000040;
-  margin-bottom: 1%;
+  margin-bottom: 5%;
+  border-radius: 5px;
+  /* border: 2px solid red; */
 }
 
 .post-card .container-1 {
@@ -27,6 +30,7 @@
 .post-card .container-1 .box-1 .post-title {
   font-size: 1.2rem;
   margin-bottom: 1%;
+  padding: 0;
 }
 
 .post-card .container-1 .box-1 .post-time {
@@ -34,6 +38,9 @@
   font-weight: normal;
   padding: 0 0;
   margin: 0 0;
+  display: flex;
+  justify-content: space-between;
+  width: 130px;
 }
 
 .post-card .container-1 .user-dp {
