@@ -1,7 +1,6 @@
 .forumheader {
   /* border: 2px solid blue; */
   width: 100%;
-  /* width: 60vw; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
