@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import IndivPost from "./components/IndivPost";
+import history from "./history";
 
 export default function App() {
   const sideBarData = SideBarData.map((item) => {
@@ -56,6 +57,9 @@ export default function App() {
       <div className="forum-section">
         <ForumHeader />
         <section className="card">{cards}</section>
+        <button onClick={() => history.push("/Test")}>
+          Click button to view
+        </button>
       </div>
     </div>
     // <IndivPost>{cards}</IndivPost>
