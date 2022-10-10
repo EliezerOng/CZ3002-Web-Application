@@ -2,8 +2,12 @@ import React from "react";
 import homelogo from "../images/house-solid.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./SideBar.css";
+import history from "../history";
 
 export default function SideBar(props) {
+  function redirect() {
+    history.push("/CounsellorPage");
+  }
   return (
     <div className="side-bar">
       <div className="container-12">
@@ -21,7 +25,7 @@ export default function SideBar(props) {
             <h1>Home</h1>
           </div>
 
-          <div className="counsellor-box">
+          <div className="counsellor-box" onClick={redirect}>
             <img
               src={homelogo}
               alt="counsellor logo"
