@@ -5,8 +5,11 @@ import "./SideBar.css";
 import history from "../history";
 
 export default function SideBar(props) {
-  function redirect() {
+  function redirectCP() {
     history.push("/CounsellorPage");
+  }
+  function redirectFP() {
+    history.push("/");
   }
   return (
     <div className="side-bar">
@@ -20,12 +23,12 @@ export default function SideBar(props) {
           </div>
         </div>
         <div className="container-2">
-          <div className="home-box">
+          <div className="home-box" onClick={redirectFP}>
             <img src={homelogo} alt="home logo" className="home-logo" />
             <h1>Home</h1>
           </div>
 
-          <div className="counsellor-box" onClick={redirect}>
+          <div className="counsellor-box" onClick={redirectCP}>
             <img
               src={homelogo}
               alt="counsellor logo"
