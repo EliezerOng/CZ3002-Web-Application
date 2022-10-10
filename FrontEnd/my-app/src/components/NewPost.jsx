@@ -28,10 +28,10 @@ const NewPost = (props) => {
               onChange={props.handleChange}
             ></textarea>
           </p>
+          <button className="submitbtn" onClick={props.handleUpdate}>
+            submit
+          </button>
         </div>
-        <button className="submitbtn" onClick={props.handleUpdate}>
-          submit
-        </button>
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export default function ForumHeader() {
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
+    setNewPost([]);
   };
 
   // to update title
