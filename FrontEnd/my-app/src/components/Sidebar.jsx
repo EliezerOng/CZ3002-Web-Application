@@ -11,6 +11,9 @@ export default function SideBar(props) {
   function redirectFP() {
     history.push("/");
   }
+  function redirectLP() {
+    history.push("/Login");
+  }
   return (
     <div className="side-bar">
       <div className="container-12">
@@ -48,7 +51,7 @@ export default function SideBar(props) {
         </div>
       </div>
       <div className="container-3">
-        <div className="logout-box">
+        <div className="logout-box" onClick={redirectLP}>
           <img src={homelogo} alt="logout logo" className="logout-logo" />
           <h1>Logout</h1>
         </div>
