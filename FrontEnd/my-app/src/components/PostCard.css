@@ -71,6 +71,8 @@
   justify-content: end;
   /* margin: 6% 1% 0 0; */
   /* border: 2px solid red; */
+  margin-bottom: 10px;
+  padding-right: 10px;
 }
 
 .post-card .container-3 .box-1 {
@@ -81,8 +83,8 @@
 }
 
 .post-card .container-3 .box-1 .like-count-icon {
-  height: 40%;
-  width: 2.8vh;
+  height: 55%;
+  width: 3.2vh;
   margin-right: 10%;
 }
 
@@ -99,8 +101,8 @@
 }
 
 .post-card .container-3 .box-2 .comment-counter-icon {
-  height: 35%;
-  width: 2.5vh;
+  height: 45%;
+  width: 3vh;
   margin-right: 20%;
 }
 
