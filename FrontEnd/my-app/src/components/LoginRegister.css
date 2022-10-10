@@ -17,6 +17,10 @@ body {
   background-color: white;
 } */
 
+.register-page {
+  display: flex;
+  justify-content: stretch;
+}
 .App {
   display: flex;
   flex-direction: row;
@@ -28,9 +32,14 @@ body {
 .left-image {
   display: flex;
   background-color: aliceblue;
-  flex: 1;
   align-items: center;
   justify-content: center;
+  flex: 1;
+}
+
+.register-wrap {
+  flex: 1;
+  padding: 5vw;
 }
 
 .register,
@@ -40,18 +49,19 @@ body {
   flex: 1;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  width: 100vw;
 }
 
 .register-boxes,
 .login-boxes {
+  width: 100vw;
+  height: 100vh;
   color: #000;
   width: 100%;
-  max-width: 400px;
+  /* max-width: 400px; */
   min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: center;
+  justify-content: stretch;
   padding: 2rem;
   background-color: white;
 }
@@ -94,6 +104,7 @@ textarea {
   padding: 0.5rem;
   margin-top: 2rem;
   background-color: #90ee91;
+  color: white;
 }
 
 .instructions {
