@@ -41,8 +41,16 @@ INSTALLED_APPS = [
     "authentication",
     "forum",
     "rest_framework",
-    'corsheaders'
+    'corsheaders',
+    "rest_framework.authtoken",
 ]
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         # Permissions in views.py are authenticated using token
+#         'rest_framework.authentication.TokenAuthentication',
+#     ]
+# }
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

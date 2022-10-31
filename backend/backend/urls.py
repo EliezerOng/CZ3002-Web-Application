@@ -22,8 +22,11 @@ urlpatterns = [
     # Forum
     path("api/forum/", include("forum.urls")),
 
-    # # Appointment
-    # path("api/appointment/", include("appointment.urls")),
+    # Appointment
+    path("api/appointment/", include("appointment.urls")),
+
+    # Authentication
+    path("api/", include("authentication.urls")),
 
     # django auth
     path("api-auth/", include("rest_framework.urls")),

@@ -1,3 +1,4 @@
+from ssl import OP_ENABLE_MIDDLEBOX_COMPAT
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -5,9 +6,26 @@ from django.contrib.auth.models import User
 class Appointment(models.Model):
     appointmentID = models.BigAutoField(primary_key=True)
     date = models.DateField()
+
     # Define time field
-    userID = models.ForeignKey(User, on_delete=models.CASCADE)
-    counsellorID = models.ForeignKey("Counsellor", db_column="counelloerID", on_delete=models.CASCADE)
+    class Timeslots(models.TextChoices):
+        NINE_AM = "09:00" 
+        TEN_AM = "10:00"
+        ELEVEN_AM = "11:00"
+        TWELVE_PM = "12:00"
+        TWO_PM = "14:00"
+        THREE_PM = "15:00"
+        FOUR_PM = "16:00"
+        FIVE_PM = "17:00"
+    
+    time = models.CharField(
+        max_length = 100,
+        choices = Timeslots.choices,
+        default = Timeslots.TEN_AM,
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    counsellorID = models.ForeignKey("Counsellor", db_column="counsellorID", on_delete=models.CASCADE)
     completed = models.BooleanField()
 
 class Counsellor(models.Model):
