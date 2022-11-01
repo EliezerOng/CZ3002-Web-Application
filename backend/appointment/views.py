@@ -8,80 +8,18 @@ import math
 import requests
 from django.utils.timezone import now
 from django.http import JsonResponse
+from django.forms.models import model_to_dict
+import json
 # Create your views here.
 
 
-class CounsellorListView(generics.ListCreateAPIView):
+class CounsellorListView(generics.ListAPIView):
     serializer_class = CounsellorSerializer
-
-
-    # # Override this method to filter data from DB to display on API
-    # # Display all counsellor objects
-    # def perform_create(self, serializer):
-    #     print("Postal Code: ", self.request.POST.get('postalCode'))
-
-
         
     def get_queryset(self):
         queryset = Counsellor.objects.all() # Order the results
         return queryset
-        # print("Postal Code: ", self.request.POST.get('postalCode'))
-        # entered_address = self.request.GET.get('postalCode')
-        # print("Entered address: ",entered_address)
-        # #Get lat and lng of entered_address
-        # user_lat_lng = self.getcoordinates(entered_address)
-        # queryset = Counsellor.objects.all() # Order the results
-        # counsellor_address_list = []
-        # #print(queryset)
-        # for counsellor in queryset:
-        #     counsellor_address_list.append(counsellor.address)
-
-        # user_counsellors_distance = {}
-
-        # for user_counsellor in counsellor_address_list:
-        #     counsellor_lat_lng = self.getcoordinates(user_counsellor)
-        #     distance = self.distance(user_lat_lng,counsellor_lat_lng)
-        #     user_counsellors_distance[user_counsellor] = distance
-
-        # print(user_counsellors_distance)
-        # sorted_counsellors = {}
-        # sorted_keys = sorted(user_counsellors_distance,key=user_counsellors_distance.get)
-
-        # for w in sorted_keys:
-        #     sorted_counsellors[w] = user_counsellors_distance[w]
-
-        # print(sorted_counsellors)
-        # #return queryset
-        # return sorted_counsellors
-    
-    def getcoordinates(address):
-        latlng_lst = []
-        req = requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+address+'&returnGeom=Y&getAddrDetails=Y&pageNum=1')
-        resultsdict = eval(req.text)
-        if len(resultsdict['results'])>0:
-            #return resultsdict['results'][0]['LATITUDE'], resultsdict['results'][0]['LONGITUDE']
-            latlng_lst.append(resultsdict['results'][0]['LATITUDE'])
-            latlng_lst.append(resultsdict['results'][0]['LONGITUDE'])
-            return latlng_lst
         
-        else:
-            pass
-    
-    def getDistance(p1,p2):   #get distance between 2 points p1 and p2.
-    #    earth_radius = 6378137
-    #    dLat = math.radians(p2.lat - p1.lat) #subtract latitude
-    #    dLong = math.radians(p2.lng - p1.lng) #subtract longtitude
-    #    a = math.sin(dLat / 2) * math.sin(dLat / 2) + math.cos(math.radians(p1.lat)) * math.cos(math.radians(p2.lat)) * math.sin(dLong / 2) * math.sin(dLong / 2)
-    #    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-    #    d = earth_radius * c
-    #    return d #returns the distance in meter
-        earth_radius = 6378137
-        dLat = math.radians(p2[0] - p1[0]) #subtract latitude
-        dLong = math.radians(p2[1] - p1[1]) #subtract longtitude
-        a = math.sin(dLat / 2) * math.sin(dLat / 2) + math.cos(math.radians(p1[0])) * math.cos(math.radians(p2[0])) * math.sin(dLong / 2) * math.sin(dLong / 2)
-        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-        d = earth_radius * c
-        return d #returns the distance in meter
 
 # Class to create appointments under specific counsellors
 # api/appointment/<int:pk>/book
@@ -149,4 +87,67 @@ class UpcomingAppointmentDestroyView(generics.RetrieveDestroyAPIView):
         else:
             raise ValidationError('You already cancelled this appointment!')
 
+def getnearest(request,obj):
+    counsellor_info = {}
+    #Get lat and lng of entered_address
+    user_lat_lng = getcoordinates(obj)
+    print("Input address " + str(user_lat_lng))
+    queryset = Counsellor.objects.all() # Order the results
+    counsellor_address_list = []
+    #print(queryset)
+    for counsellor in queryset:
+        counsellor_address_list.append(counsellor.address)
 
+    print("Counsellor address " + str(counsellor_address_list))
+
+    user_counsellors_distance = {}
+
+    for user_counsellor in counsellor_address_list:
+        counsellor_lat_lng = getcoordinates(user_counsellor)
+        distance = getDistance(user_lat_lng,counsellor_lat_lng)
+        user_counsellors_distance[user_counsellor] = distance
+
+    print(user_counsellors_distance)
+    sorted_counsellors = {}
+    sorted_keys = sorted(user_counsellors_distance,key=user_counsellors_distance.get)
+
+    for w in sorted_keys:
+        sorted_counsellors[w] = user_counsellors_distance[w]
+    for index,address in enumerate(sorted_counsellors.keys()):
+        counsellor = Counsellor.objects.filter(address = address).first()
+        #counsellor = model_to_dict(counsellor)
+        counsellor_info[index] = counsellor
+    print(sorted_counsellors)
+    return JsonResponse(jsonRes, safe=False)
+def getcoordinates(address):
+    latlng_lst = []
+    try:
+        req = requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+address+'&returnGeom=Y&getAddrDetails=Y&pageNum=1')
+        resultsdict = eval(req.text)
+        # print("Results of results in keys or not ")
+        # print('results' in resultsdict.keys())
+        # print(resultsdict)
+        res = resultsdict['results']
+        if len(res) > 0:
+            #return resultsdict['results'][0]['LATITUDE'], resultsdict['results'][0]['LONGITUDE']
+            latlng_lst.append(float(res[0]['LATITUDE']))
+            latlng_lst.append(float(res[0]['LONGITUDE']))
+            return latlng_lst
+    except TypeError:
+        pass
+    
+def getDistance(p1,p2):   #get distance between 2 points p1 and p2.
+#    earth_radius = 6378137
+#    dLat = math.radians(p2.lat - p1.lat) #subtract latitude
+#    dLong = math.radians(p2.lng - p1.lng) #subtract longtitude
+#    a = math.sin(dLat / 2) * math.sin(dLat / 2) + math.cos(math.radians(p1.lat)) * math.cos(math.radians(p2.lat)) * math.sin(dLong / 2) * math.sin(dLong / 2)
+#    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+#    d = earth_radius * c
+#    return d #returns the distance in meter
+    earth_radius = 6378137
+    dLat = math.radians(p2[0] - p1[0]) #subtract latitude
+    dLong = math.radians(p2[1] - p1[1]) #subtract longtitude
+    a = math.sin(dLat / 2) * math.sin(dLat / 2) + math.cos(math.radians(p1[0])) * math.cos(math.radians(p2[0])) * math.sin(dLong / 2) * math.sin(dLong / 2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    d = earth_radius * c
+    return d #returns the distance in meter

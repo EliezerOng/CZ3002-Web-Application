@@ -4,16 +4,9 @@ from .models import Counsellor, Appointment, User
 # Create serializer for counsellor model class
 class CounsellorSerializer(serializers.ModelSerializer):
 
-    
- 
-
-    def create(self, validated_data):
-        postalCode = validated_data.pop("postalCode", None)
-        return super().create(validated_data)
-
     class Meta:
         model = Counsellor
-        fields = ["counsellorID", "name", "languages", "description", "images", "address"] # Choose fields to display on restAPI
+        fields = ["counsellorID", "name", "languages", "description", "images", "address",] # Choose fields to display on restAPI
 
 # Create serializer for appointment model class
 class AppointmentSerializer(serializers.ModelSerializer):
