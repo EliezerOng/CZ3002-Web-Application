@@ -21,12 +21,13 @@ body {
   display: flex;
   justify-content: stretch;
 }
+/* need to rename this */
 .App {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
-  min-height: 100vh;
+  min-height: 100vh; */
 }
 
 .left-image {
