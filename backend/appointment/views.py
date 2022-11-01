@@ -1,20 +1,87 @@
 from django.shortcuts import render
-from rest_framework import serializers, permissions, generics,mixins,status
-from .serializer import CounsellorSerializer, AppointmentSerializer
+from rest_framework import serializers, permissions, generics,mixins,status,filters
+from .serializer import CounsellorSerializer, AppointmentSerializer, CompletedAppointmentSerializer, UpcomingAppointmentSerializer
 from .models import Counsellor, Appointment
 from rest_framework.exceptions import ValidationError
 from django.http import HttpResponse
-
+import math
+import requests
+from django.utils.timezone import now
+from django.http import JsonResponse
 # Create your views here.
-class CounsellorListView(generics.ListAPIView):
+
+
+class CounsellorListView(generics.ListCreateAPIView):
     serializer_class = CounsellorSerializer
 
-     # Override this method to filter data from DB to display on API
-    # Display all counsellor objects
+
+    # # Override this method to filter data from DB to display on API
+    # # Display all counsellor objects
+    # def perform_create(self, serializer):
+    #     print("Postal Code: ", self.request.POST.get('postalCode'))
+
+
+        
     def get_queryset(self):
         queryset = Counsellor.objects.all() # Order the results
         return queryset
+        # print("Postal Code: ", self.request.POST.get('postalCode'))
+        # entered_address = self.request.GET.get('postalCode')
+        # print("Entered address: ",entered_address)
+        # #Get lat and lng of entered_address
+        # user_lat_lng = self.getcoordinates(entered_address)
+        # queryset = Counsellor.objects.all() # Order the results
+        # counsellor_address_list = []
+        # #print(queryset)
+        # for counsellor in queryset:
+        #     counsellor_address_list.append(counsellor.address)
 
+        # user_counsellors_distance = {}
+
+        # for user_counsellor in counsellor_address_list:
+        #     counsellor_lat_lng = self.getcoordinates(user_counsellor)
+        #     distance = self.distance(user_lat_lng,counsellor_lat_lng)
+        #     user_counsellors_distance[user_counsellor] = distance
+
+        # print(user_counsellors_distance)
+        # sorted_counsellors = {}
+        # sorted_keys = sorted(user_counsellors_distance,key=user_counsellors_distance.get)
+
+        # for w in sorted_keys:
+        #     sorted_counsellors[w] = user_counsellors_distance[w]
+
+        # print(sorted_counsellors)
+        # #return queryset
+        # return sorted_counsellors
+    
+    def getcoordinates(address):
+        latlng_lst = []
+        req = requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+address+'&returnGeom=Y&getAddrDetails=Y&pageNum=1')
+        resultsdict = eval(req.text)
+        if len(resultsdict['results'])>0:
+            #return resultsdict['results'][0]['LATITUDE'], resultsdict['results'][0]['LONGITUDE']
+            latlng_lst.append(resultsdict['results'][0]['LATITUDE'])
+            latlng_lst.append(resultsdict['results'][0]['LONGITUDE'])
+            return latlng_lst
+        
+        else:
+            pass
+    
+    def getDistance(p1,p2):   #get distance between 2 points p1 and p2.
+    #    earth_radius = 6378137
+    #    dLat = math.radians(p2.lat - p1.lat) #subtract latitude
+    #    dLong = math.radians(p2.lng - p1.lng) #subtract longtitude
+    #    a = math.sin(dLat / 2) * math.sin(dLat / 2) + math.cos(math.radians(p1.lat)) * math.cos(math.radians(p2.lat)) * math.sin(dLong / 2) * math.sin(dLong / 2)
+    #    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    #    d = earth_radius * c
+    #    return d #returns the distance in meter
+        earth_radius = 6378137
+        dLat = math.radians(p2[0] - p1[0]) #subtract latitude
+        dLong = math.radians(p2[1] - p1[1]) #subtract longtitude
+        a = math.sin(dLat / 2) * math.sin(dLat / 2) + math.cos(math.radians(p1[0])) * math.cos(math.radians(p2[0])) * math.sin(dLong / 2) * math.sin(dLong / 2)
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        d = earth_radius * c
+        return d #returns the distance in meter
 
 # Class to create appointments under specific counsellors
 # api/appointment/<int:pk>/book
@@ -22,11 +89,12 @@ class AppointmentListCreateView(generics.ListCreateAPIView):
     serializer_class = AppointmentSerializer
 
     # Override this method to filter data from DB to display on API
-    # Display all booked appointments under corresponding counsellor
+    # Display all booked appointments of a specific date under corresponding counsellor
     def get_queryset(self):
         counsellor = Counsellor.objects.get(pk=self.kwargs['pk']) # Get counsellor based on primary key (PID) in query parameter
-        # return Like.objects.filter(liker=user, post=post)
-        return Appointment.objects.filter(counsellorID=counsellor)
+        date = self.request.POST.get('date')
+        return Appointment.objects.filter(counsellorID=counsellor, date=date)
+    
 
     # Override this smethod to handle the object before saving into DB (POST)
     # Default behaviour of this method is to call serializer.save()
@@ -40,9 +108,45 @@ class AppointmentListCreateView(generics.ListCreateAPIView):
             bookings_list.append(str(i.date)+str(i.time))
         #check if the counsellor is alr booked for a particular day
         booking = str(self.request.POST.get('date'))+str(self.request.POST.get('time'))
-        print(booking)
-        print(bookings_list)
         if booking in bookings_list:
             raise ValidationError('This timing has already been booked, please select a different timing')
         # Define the user to be the current user in POST
         serializer.save(user=self.request.user, counsellorID = counsellor)
+
+
+
+# Class to view completed appointments for a user
+class CompleteAppointmentListView(generics.ListAPIView):
+    serializer_class = CompletedAppointmentSerializer
+
+    def get_queryset(self):
+        user = self.request.user 
+        return Appointment.objects.filter(user=user, date__lt=now()) 
+
+# Class to view upcoming appointments for a user
+class UpcomingAppointmentListView(generics.ListAPIView):
+    serializer_class = UpcomingAppointmentSerializer
+
+    def get_queryset(self):
+        user = self.request.user 
+        return Appointment.objects.filter(user=user, date__gt=now())
+
+
+# Class to delete upcoming appointment for a user
+class UpcomingAppointmentDestroyView(generics.RetrieveDestroyAPIView):
+    serializer_class = UpcomingAppointmentSerializer
+
+    # Display appointment to be deleted
+    def get_queryset(self):
+        user = self.request.user
+        return Appointment.objects.filter(user=user, appointmentID=self.kwargs['pk'])
+        
+    def delete(self, request, *args, **kwargs):
+        user = self.request.user
+        appointment = Appointment.objects.get(pk=self.kwargs['pk'], user = user)
+        if appointment:
+            return self.destroy(request, *args, **kwargs)
+        else:
+            raise ValidationError('You already cancelled this appointment!')
+
+
