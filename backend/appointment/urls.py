@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
-from .views import CounsellorListView, AppointmentListCreateView, CompleteAppointmentListView, UpcomingAppointmentListView, UpcomingAppointmentDestroyView
+from appointment import views
+from .views import CounsellorListView, AppointmentListCreateView, CompleteAppointmentListView, UpcomingAppointmentListView, UpcomingAppointmentDestroyView, getnearest
 app_name = "appointment"
 # Define URLs for APIs
 urlpatterns = [
@@ -21,5 +21,5 @@ urlpatterns = [
     path("upcoming/<int:pk>", UpcomingAppointmentDestroyView.as_view()),
     
     #path("counsellor/?address=235152")
-    #path("counsellor/<str:obj>/", views.getnearest,name='getnearest')
+    path("counsellor/<str:obj>/", views.getnearest,name='getnearest')
 ]
