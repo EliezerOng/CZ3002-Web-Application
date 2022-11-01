@@ -1,25 +1,42 @@
 /* Popup style */
-.background {
+.background2 {
   position: fixed;
   background: #00000050;
   width: 100%;
   height: 100vh;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
 }
-
-.popup-box {
+.popup-whole {
+  background-color: pink;
   position: relative;
-  width: 50%;
+  width: 90%;
+  height: 90%;
   margin: 0 auto;
-  height: auto;
-  min-height: 55vh;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: #fff;
   border-radius: 10px;
   padding: 20px;
   border: 1px solid #999;
-  overflow: auto;
+  border: 5px solid green;
+
+  display: flex;
+}
+
+.popup-left {
+  border: 5px solid blue;
+  width: 30%;
+  height: auto;
+  background: #fff;
+  padding: 20px;
+}
+
+.popup-right {
+  border: 5px solid red;
+  width: 70%;
+  height: auto;
+  background: #fff;
+  padding: 20px;
 }
 
 .close-icon {

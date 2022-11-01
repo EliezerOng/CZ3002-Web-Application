@@ -3,8 +3,8 @@ import "./NewPost.css";
 
 const NewPost = (props) => {
   return (
-    <div className="popup-box">
-      <div className="box">
+    <div className="background">
+      <div className="popup-box">
         <span className="close-icon" onClick={props.handleClose}>
           x
         </span>

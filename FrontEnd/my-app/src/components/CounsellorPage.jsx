@@ -23,29 +23,29 @@ function App() {
     setSearchLocation(location);
   }, []);
 
-  function geocode(addr) {
-    axios
-      .get("https://maps.googleapis.com/maps/api/geocode/json", {
-        params: {
-          address: addr,
-          key: "AIzaSyC3uv7NhGvdRlcmbc-fGt9TLuZ1KnOWeMI",
-        },
-      })
-      .then(function (response) {
-        setSearchLocation({
-          address: addr,
-          lat: response.data.results[0].geometry.location.lat,
-          lng: response.data.results[0].geometry.location.lng,
-        });
+  // function geocode(addr) {
+  //   axios
+  //     .get("https://maps.googleapis.com/maps/api/geocode/json", {
+  //       params: {
+  //         address: addr,
+  //         key: "AIzaSyC3uv7NhGvdRlcmbc-fGt9TLuZ1KnOWeMI",
+  //       },
+  //     })
+  //     .then(function (response) {
+  //       setSearchLocation({
+  //         address: addr,
+  //         lat: response.data.results[0].geometry.location.lat,
+  //         lng: response.data.results[0].geometry.location.lng,
+  //       });
 
-        // console.log(response.data.results[0].geometry.location);
-        // console.log(response.data.results[0].geometry.location.lat);
-        // console.log(response.data.results[0].geometry.location.lng);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  //       // console.log(response.data.results[0].geometry.location);
+  //       // console.log(response.data.results[0].geometry.location.lat);
+  //       // console.log(response.data.results[0].geometry.location.lng);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
 
   // to update search location
   function handleLocation(event) {
@@ -69,7 +69,8 @@ function App() {
       .get("https://maps.googleapis.com/maps/api/geocode/json", {
         params: {
           address: addr,
-          key: "AIzaSyC3uv7NhGvdRlcmbc-fGt9TLuZ1KnOWeMI",
+          // API KEY !!! TO BE COMMENTED OUT
+          key: "AIzaSyAgUyxkZaBToNh8lpmhkrrxM-J3K5eNe-g",
         },
       })
       .then(function (response) {

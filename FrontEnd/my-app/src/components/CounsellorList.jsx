@@ -1,9 +1,56 @@
-import React from "react";
-
+import React, { useState } from "react";
 import data from "../data";
 import Counsellor from "./Counsellor";
+import BookAppt from "./BookAppt";
 
 export default function CounsellorList() {
-  const dataElements = data.map((data) => <Counsellor {...data} />);
-  return <div className="counsellor-list">{dataElements}</div>;
+  // function handleClick() {
+  //   console.log("bitch");
+  // }
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [newPost, setNewPost] = useState([]);
+  const [display, setDisplay] = useState([]);
+
+  function togglePopup(name, address) {
+    setIsOpen(!isOpen);
+    setNewPost([]);
+    setDisplay({
+      name: name,
+      address: address,
+    });
+  }
+  // const togglePopup = () => {
+  //   setIsOpen(!isOpen);
+  //   setNewPost([]);
+  // };
+
+  // to update title
+  function handleNewPost(event) {
+    const { name, value } = event.target;
+    // var coords = geocode(name);
+    setNewPost((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    console.log(newPost);
+  }
+
+  const dataElements = data.map((data) => (
+    <Counsellor {...data} handleClick={togglePopup} />
+  ));
+  return (
+    <div className="counsellor-list">
+      {dataElements}
+      {isOpen && (
+        <BookAppt
+          className="createPost"
+          info={newPost}
+          handleClose={togglePopup}
+          handleChange={handleNewPost}
+          display={display}
+        />
+      )}
+    </div>
+  );
 }

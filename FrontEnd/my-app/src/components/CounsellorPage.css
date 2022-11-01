@@ -60,6 +60,7 @@
   /* border: 2px solid black; */
   width: 60%;
   height: 100%;
+  z-index: -1;
 }
 .cn-text {
   text-indent: 30px;
@@ -71,7 +72,7 @@
 .ccard {
   /* width: 250px;
   height: 250px; */
-  /* border: solid 2px black; */
+  border: solid 5px red;
   border-radius: 20px;
   box-shadow: 5px 5px 5px darkgray;
   /* x-axis, y-axis, blur, colour */

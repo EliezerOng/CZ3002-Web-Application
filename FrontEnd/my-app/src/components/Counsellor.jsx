@@ -3,7 +3,10 @@ import "./CounsellorPage.css";
 
 export default function Counsellor(props) {
   return (
-    <div className="ccard">
+    <div
+      className="ccard"
+      onClick={() => props.handleClick(props.name, props.address)}
+    >
       <img src={`./images/${props.image}`} alt="image" />
 
       <div className="ccard-info">

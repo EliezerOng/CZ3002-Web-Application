@@ -15,7 +15,8 @@ export default function Map({ location, zoomLevel }) {
   return (
     <div className="map">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyC3uv7NhGvdRlcmbc-fGt9TLuZ1KnOWeMI" }}
+        // API KEY !!! TO BE COMMENTED OUT
+        bootstrapURLKeys={{ key: "AIzaSyAgUyxkZaBToNh8lpmhkrrxM-J3K5eNe-g" }}
         defaultCenter={location}
         defaultZoom={zoomLevel}
         options={{
