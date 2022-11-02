@@ -8,6 +8,9 @@ import Forum from "./components/Forum";
 import CounsellorPage from "./components/CounsellorPage";
 import App from "./App";
 import history from "./history";
+import ViewAppointments from "./components/ViewAppointments";
+import AppointmentCard from "./components/AppointmentCard";
+import PostCard from "./components/PostCard";
 
 export default class Routes extends Component {
   render() {
@@ -18,6 +21,9 @@ export default class Routes extends Component {
           <Route path="/CounsellorPage" component={CounsellorPage} />
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
+          <Route path="/Forum" component={Forum} />
+          <Route path="/Appointments" component={ViewAppointments} />
+          <Route path="/AppointmentCard" component={AppointmentCard} />
           <Route path="/Test" component={Test} />
         </Switch>
       </Router>

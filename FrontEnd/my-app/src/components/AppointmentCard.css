@@ -1,0 +1,58 @@
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 3vw;
+  border-style: groove;
+  border-radius: 8px;
+}
+
+.counsellor {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+
+.counsellor-pic {
+  width: 5vw;
+  height: 5vw;
+}
+
+.counsellor-name {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.counsellor-address {
+  display: flex;
+  gap: 1.6vw;
+  margin-top: 3vh;
+  padding-left: 7vw;
+}
+
+.date-time {
+  display: flex;
+  gap: 50vw;
+  font-size: 0.85rem;
+  color: #3f3f3f;
+}
+
+.date,
+.time {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.cancel-button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: #90ee91;
+  color: white;
+  border-style: none;
+}

@@ -59,7 +59,7 @@
   width: 10%;
 }
 
-.side-bar .container-2 .home-box h1 {
+.side-bar .container-2 h1 {
   font-size: 120%;
   margin: 0 0 0 5%;
 }
@@ -84,11 +84,6 @@
   width: 10%;
 }
 
-.side-bar .container-2 .counsellor-box h1 {
-  font-size: 120%;
-  margin: 0 0 0 5%;
-}
-
 .side-bar .container-2 .appointment-box {
   display: flex;
   flex-direction: row;
@@ -102,11 +97,6 @@
 .side-bar .container-2 .appointment-box .appointment-logo {
   height: 100%;
   width: 10%;
-}
-
-.side-bar .container-2 .appointment-box h1 {
-  font-size: 120%;
-  margin: 0 0 0 5%;
 }
 
 .side-bar .container-12 {

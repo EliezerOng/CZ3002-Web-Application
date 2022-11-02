@@ -4,14 +4,14 @@ import ForumHeader from "./ForumHeader";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 
-export default function App() {
-  const [data, setDate] = useState([]);
+export default function Forum() {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     Axios.get("http://127.0.0.1:8000/api/forum/posts")
       .then((res) => {
         console.log("Getting from ::::", res.data);
-        setDate(res.data);
+        setData(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
