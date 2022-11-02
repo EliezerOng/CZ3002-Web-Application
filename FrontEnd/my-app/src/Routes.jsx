@@ -8,13 +8,22 @@ import Forum from "./components/Forum";
 import CounsellorPage from "./components/CounsellorPage";
 import App from "./App";
 import history from "./history";
+import IndivPost from "./components/IndivPost";
 
 export default class Routes extends Component {
   render() {
+    // const [singleData, setSingleData] = useState();
+
+    // function addData(data) {
+    //   setSingleData(data);
+    // }
+
     return (
       <Router history={history}>
         <Switch>
+          {/* <Route path="/" exact component={Forum} /> */}
           <Route path="/" exact component={Forum} />
+          <Route path="/IndivPost" component={IndivPost} />
           <Route path="/CounsellorPage" component={CounsellorPage} />
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
