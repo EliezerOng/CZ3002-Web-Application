@@ -1,0 +1,31 @@
+.appointment-page {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12vw;
+}
+
+.toggle-buttons {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+}
+
+.upcoming-button,
+.completed-button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 3rem;
+  border-style: none;
+}
+
+.upcoming-button {
+  background-color: #90ee91;
+  color: white;
+}
+
+.completed-button {
+  background-color: darkgray;
+  color: gray;
+}
