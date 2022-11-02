@@ -21,13 +21,13 @@ body {
   display: flex;
   justify-content: stretch;
 }
-.App {
+/* .App {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
   min-height: 100vh;
-}
+} */
 
 .left-image {
   display: flex;
