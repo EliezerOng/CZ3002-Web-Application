@@ -16,7 +16,7 @@ export default function SideBar(props) {
     history.push("/Login");
   }
   function redirectAP() {
-    history.push("/Appointments");
+    history.push("/UpcomingAppointments");
   }
   return (
     <div className="side-bar">
