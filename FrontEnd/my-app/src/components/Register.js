@@ -135,162 +135,160 @@ const Register = () => {
         ) : (
           <section class="register-boxes">
             {/* if errMsg exist, class="errmsg", if not offscren, meaning the msg is offscreen, cant see, but still thr */}
-            <div className="register-page">
-              <div className="left-image">
-                <img src={mindfullLogo} className="mindfull-logo" />
-              </div>
-              <p
-                ref={errRef}
-                className={errMsg ? "errmsg" : "offscreen"}
-                aria-live="assertive"
-              >
-                {" "}
-                {errMsg}{" "}
-              </p>
-              <div className="register-wrap">
-                <h1>Register your account</h1>
-                <form onSubmit={handleSubmit} className="register-form">
-                  <label htmlFor="username" className="field-label">
-                    Username:
-                    <span className={validName ? "valid" : "hide"}>
-                      <FontAwesomeIcon icon={faCheck} />
-                    </span>
-                    <span className={validName || !user ? "hide" : "invalid"}>
-                      <FontAwesomeIcon icon={faTimes} />
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    id="username"
-                    // allow to set focus on input when the page loads
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    required
-                    //indicate whether value entered is accepted format
-                    //lets screenreader announce whether input field needs adjustment before form is submitted
-                    aria-invalid={validName ? "false" : "true"}
-                    aria-describedby="uidnote"
-                    onFocus={() => setUserFocus(true)}
-                    onBlur={() => setUserFocus(false)}
-                  />
-                  <p
-                    id="uidnote"
-                    className={
-                      userFocus && user && !validName
-                        ? "instructions"
-                        : "offscreen"
-                    }
-                  >
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                    4 to 24 characters.
-                    <br />
-                    Must begin with a letter.
-                    <br />
-                    Letters, numbers, underscores, hyphens allowed.
-                  </p>
-
-                  <label htmlFor="password" className="field-label">
-                    Password:
-                    <span className={validPwd ? "valid" : "hide"}>
-                      <FontAwesomeIcon icon={faCheck} />
-                    </span>
-                    <span className={validPwd || !pwd ? "hide" : "invalid"}>
-                      <FontAwesomeIcon icon={faTimes} />
-                    </span>
-                  </label>
-                  <input
-                    type="password"
-                    //match label
-                    id="password"
-                    // allow to set focus on input
-                    onChange={(e) => setPwd(e.target.value)}
-                    required
-                    //indicate whether value entered is accepted format
-                    //lets screenreader announce whether input field needs adjustment before form is submitted
-                    aria-invalid={validPwd ? "false" : "true"}
-                    aria-describedby="pwdnote"
-                    onFocus={() => setPwdFocus(true)}
-                    onBlur={() => setPwdFocus(false)}
-                  />
-                  <p
-                    id="pwdnote"
-                    className={
-                      pwdFocus && !validPwd ? "instructions" : "offscreen"
-                    }
-                  >
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                    {/* 8 to 24 characters.
-          <br />
-          Must include uppercase and lowercase letters, a number and a special
-          character.
-          <br />
-          Allowed special characters:{" "}
-          <span aria-label="exclamation mark">!</span>
-          <span aria-label="at symbol">@</span>
-          <span aria-label="hashtag">#</span>
-          <span aria-label="dollar sign">$</span>
-          <span aria-label="percent">%</span> */}
-                    4 to 24 characters.
-                    <br />
-                    Must begin with a letter.
-                    <br />
-                    Letters, numbers, underscores, hyphens allowed.
-                  </p>
-
-                  <label htmlFor="confirm_pwd" className="field-label">
-                    Confirm Password:
-                    {/* matchPwd to exist so that it cant be empty fields matching */}
-                    <span className={validMatch && matchPwd ? "valid" : "hide"}>
-                      <FontAwesomeIcon icon={faCheck} />
-                    </span>
-                    <span
-                      className={validMatch || !matchPwd ? "hide" : "invalid"}
-                    >
-                      <FontAwesomeIcon icon={faTimes} />
-                    </span>
-                  </label>
-                  <input
-                    type="password"
-                    //match label
-                    id="confirm_pwd"
-                    // allow to set focus on input
-                    onChange={(e) => setMatchPwd(e.target.value)}
-                    required
-                    //indicate whether value entered is accepted format
-                    //lets screenreader announce whether input field needs adjustment before form is submitted
-                    aria-invalid={validMatch ? "false" : "true"}
-                    aria-describedby="confirmnote"
-                    onFocus={() => setMatchFocus(true)}
-                    onBlur={() => setMatchFocus(false)}
-                  />
-                  <p
-                    id="confirmnote"
-                    className={
-                      matchFocus && !validMatch ? "instructions" : "offscreen"
-                    }
-                  >
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                    Must match the first password input field.
-                  </p>
-
-                  <button
-                    disabled={
-                      !validName || !validPwd || !validMatch ? true : false
-                    }
-                    className="sign-up"
-                  >
-                    Sign up
-                  </button>
-                </form>
-                <p>
-                  Already Registered?
-                  <br />
-                  <span className="line">
-                    <Link to="/Login">Sign In</Link>
+            <div className="left-image">
+              <img src={mindfullLogo} className="mindfull-logo" />
+            </div>
+            <p
+              ref={errRef}
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
+            >
+              {" "}
+              {errMsg}{" "}
+            </p>
+            <div className="register-wrap">
+              <h1>Register your account</h1>
+              <form onSubmit={handleSubmit} className="register-form">
+                <label htmlFor="username" className="field-label">
+                  Username:
+                  <span className={validName ? "valid" : "hide"}>
+                    <FontAwesomeIcon icon={faCheck} />
                   </span>
+                  <span className={validName || !user ? "hide" : "invalid"}>
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  // allow to set focus on input when the page loads
+                  ref={userRef}
+                  autoComplete="off"
+                  onChange={(e) => setUser(e.target.value)}
+                  required
+                  //indicate whether value entered is accepted format
+                  //lets screenreader announce whether input field needs adjustment before form is submitted
+                  aria-invalid={validName ? "false" : "true"}
+                  aria-describedby="uidnote"
+                  onFocus={() => setUserFocus(true)}
+                  onBlur={() => setUserFocus(false)}
+                />
+                <p
+                  id="uidnote"
+                  className={
+                    userFocus && user && !validName
+                      ? "instructions"
+                      : "offscreen"
+                  }
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  4 to 24 characters.
+                  <br />
+                  Must begin with a letter.
+                  <br />
+                  Letters, numbers, underscores, hyphens allowed.
                 </p>
-              </div>
+
+                <label htmlFor="password" className="field-label">
+                  Password:
+                  <span className={validPwd ? "valid" : "hide"}>
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
+                  <span className={validPwd || !pwd ? "hide" : "invalid"}>
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                </label>
+                <input
+                  type="password"
+                  //match label
+                  id="password"
+                  // allow to set focus on input
+                  onChange={(e) => setPwd(e.target.value)}
+                  required
+                  //indicate whether value entered is accepted format
+                  //lets screenreader announce whether input field needs adjustment before form is submitted
+                  aria-invalid={validPwd ? "false" : "true"}
+                  aria-describedby="pwdnote"
+                  onFocus={() => setPwdFocus(true)}
+                  onBlur={() => setPwdFocus(false)}
+                />
+                <p
+                  id="pwdnote"
+                  className={
+                    pwdFocus && !validPwd ? "instructions" : "offscreen"
+                  }
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  {/* 8 to 24 characters.
+                      <br />
+                      Must include uppercase and lowercase letters, a number and a special
+                      character.
+                      <br />
+                      Allowed special characters:{" "}
+                      <span aria-label="exclamation mark">!</span>
+                      <span aria-label="at symbol">@</span>
+                      <span aria-label="hashtag">#</span>
+                      <span aria-label="dollar sign">$</span>
+                      <span aria-label="percent">%</span> */}
+                  4 to 24 characters.
+                  <br />
+                  Must begin with a letter.
+                  <br />
+                  Letters, numbers, underscores, hyphens allowed.
+                </p>
+
+                <label htmlFor="confirm_pwd" className="field-label">
+                  Confirm Password:
+                  {/* matchPwd to exist so that it cant be empty fields matching */}
+                  <span className={validMatch && matchPwd ? "valid" : "hide"}>
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
+                  <span
+                    className={validMatch || !matchPwd ? "hide" : "invalid"}
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                </label>
+                <input
+                  type="password"
+                  //match label
+                  id="confirm_pwd"
+                  // allow to set focus on input
+                  onChange={(e) => setMatchPwd(e.target.value)}
+                  required
+                  //indicate whether value entered is accepted format
+                  //lets screenreader announce whether input field needs adjustment before form is submitted
+                  aria-invalid={validMatch ? "false" : "true"}
+                  aria-describedby="confirmnote"
+                  onFocus={() => setMatchFocus(true)}
+                  onBlur={() => setMatchFocus(false)}
+                />
+                <p
+                  id="confirmnote"
+                  className={
+                    matchFocus && !validMatch ? "instructions" : "offscreen"
+                  }
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  Must match the first password input field.
+                </p>
+
+                <button
+                  disabled={
+                    !validName || !validPwd || !validMatch ? true : false
+                  }
+                  className="sign-up"
+                >
+                  Sign up
+                </button>
+              </form>
+              <p>
+                Already Registered?
+                <br />
+                <span className="line">
+                  <Link to="/Login">Sign In</Link>
+                </span>
+              </p>
             </div>
           </section>
         )}

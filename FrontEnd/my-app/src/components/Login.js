@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import mindfullLogo from "../images/mindfull-logo.png";
 
 const Login = () => {
   const userRef = useRef();
@@ -48,6 +49,9 @@ const Login = () => {
         </section>
       ) : (
         <section class="login-boxes">
+          <div className="left-image">
+            <img src={mindfullLogo} className="mindfull-logo" />
+          </div>
           {/*error msg display*/}
           {/*aria-live=assertive: screen reader announce msg immediately when focus is set on this para*/}
           <p
@@ -57,46 +61,48 @@ const Login = () => {
           >
             {errMsg}
           </p>
-          <h1>Sign In</h1>
-          <form onSubmit={handleSubmit} className="login-form">
-            <label htmlFor="username" className="field-label">
-              Username:
-            </label>
-            <input
-              type="text"
-              id="username"
-              //set focus on this input
-              ref={userRef}
-              //dont fill username with past entries
-              autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              //to clear input upon submission
-              value={user}
-              required
-            />
+          <div className="login-wrap">
+            <h1>Sign In</h1>
+            <form onSubmit={handleSubmit} className="login-form">
+              <label htmlFor="username" className="field-label">
+                Username:
+              </label>
+              <input
+                type="text"
+                id="username"
+                //set focus on this input
+                ref={userRef}
+                //dont fill username with past entries
+                autoComplete="off"
+                onChange={(e) => setUser(e.target.value)}
+                //to clear input upon submission
+                value={user}
+                required
+              />
 
-            <label htmlFor="password" className="field-label">
-              Password:
-            </label>
-            <input
-              type="password"
-              id="password"
-              //dont need set focus on pw directly
-              onChange={(e) => setPwd(e.target.value)}
-              //to clear input upon submission
-              value={pwd}
-              required
-            />
-            {/* dont need onclick bc its the only button in the form */}
-            <button className="sign-in">Sign In</button>
-          </form>
-          <p>
-            Need an Account?
-            <br />
-            <span className="line">
-              <Link to="/Register">Sign Up</Link>
-            </span>
-          </p>
+              <label htmlFor="password" className="field-label">
+                Password:
+              </label>
+              <input
+                type="password"
+                id="password"
+                //dont need set focus on pw directly
+                onChange={(e) => setPwd(e.target.value)}
+                //to clear input upon submission
+                value={pwd}
+                required
+              />
+              {/* dont need onclick bc its the only button in the form */}
+              <button className="sign-in">Sign In</button>
+            </form>
+            <p>
+              Need an Account?
+              <br />
+              <span className="line">
+                <Link to="/Register">Sign Up</Link>
+              </span>
+            </p>
+          </div>
         </section>
       )}
     </div>
