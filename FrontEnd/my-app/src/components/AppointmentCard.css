@@ -3,9 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  padding: 3vw;
+  padding: 2vw;
   border-style: groove;
   border-radius: 8px;
+  width: 60vw;
 }
 
 .counsellor {
@@ -15,8 +16,8 @@
 }
 
 .counsellor-pic {
-  width: 5vw;
-  height: 5vw;
+  width: 4vw;
+  height: 4vw;
 }
 
 .counsellor-name {
@@ -29,15 +30,21 @@
 .counsellor-address {
   display: flex;
   gap: 1.6vw;
-  margin-top: 3vh;
+  margin: 3vh 0;
   padding-left: 7vw;
+  align-items: center;
+  max-width: fit-content;
 }
 
 .date-time {
   display: flex;
-  gap: 50vw;
+  justify-content: space-between;
   font-size: 0.85rem;
   color: #3f3f3f;
+  border-style: groove;
+  border-width: 1px;
+  padding: 0 1vw;
+  margin-bottom: 1vh;
 }
 
 .date,

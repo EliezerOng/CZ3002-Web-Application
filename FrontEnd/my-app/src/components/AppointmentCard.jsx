@@ -29,24 +29,24 @@ const AppointmentCard = (props) => {
     <div className="card-wrapper">
       <div className="counsellor">
         <img
-          src={"./images/chloe.jpg"}
+          src={`./images/${props.image}`}
           className="counsellor-pic"
           alt="image"
         />
-        <p className="counsellor-name">Chloe</p>
+        <p className="counsellor-name">{props.name}</p>
       </div>
       <div className="counsellor-address">
         <FontAwesomeIcon icon={faLocationDot} />
-        Toh Payoh Avenue 2
+        {props.address}
       </div>
       <div className="date-time">
         <div className="date">
           <FontAwesomeIcon icon={faCalendar} />
-          <p>12 June 2012</p>
+          <p>{props.date}</p>
         </div>
         <div className="time">
           <FontAwesomeIcon icon={faClock} />
-          <p>11-12</p>
+          <p>{props.time}</p>
         </div>
       </div>
       <button className="cancel-button">Cancel</button>
