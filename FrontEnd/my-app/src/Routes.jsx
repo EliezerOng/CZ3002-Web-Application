@@ -12,13 +12,22 @@ import UpcomingAppointments from "./components/UpcomingAppointments";
 import AppointmentCard from "./components/AppointmentCard";
 import PostCard from "./components/PostCard";
 import CompletedAppointments from "./components/CompletedAppointments";
+import IndivPost from "./components/IndivPost";
 
 export default class Routes extends Component {
   render() {
+    // const [singleData, setSingleData] = useState();
+
+    // function addData(data) {
+    //   setSingleData(data);
+    // }
+
     return (
       <Router history={history}>
         <Switch>
+          {/* <Route path="/" exact component={Forum} /> */}
           <Route path="/" exact component={Forum} />
+          <Route path="/IndivPost" component={IndivPost} />
           <Route path="/CounsellorPage" component={CounsellorPage} />
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
