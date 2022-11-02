@@ -1,4 +1,4 @@
-import "./Forum.css";
+import "./css/Forum.css";
 import PostCard from "./PostCard";
 import ForumHeader from "./ForumHeader";
 import { useEffect, useState } from "react";

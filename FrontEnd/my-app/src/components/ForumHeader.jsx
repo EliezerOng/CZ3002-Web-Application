@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Axios from "axios";
-import "./ForumHeader.css";
+import "./css/ForumHeader.css";
 import NewPost from "./NewPost";
 
 // import Popup from "reactjs-popup";

@@ -2,7 +2,7 @@ import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import mindfullLogo from "../images/mindfull-logo.png";
-import "./LoginRegister.css";
+import "./css/LoginRegister.css";
 
 const Login = () => {
   const userRef = useRef();

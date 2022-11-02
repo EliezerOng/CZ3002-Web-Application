@@ -1,7 +1,7 @@
 import React from "react";
 import homelogo from "../images/house-solid.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./PostCard.css";
+import "./css/PostCard.css";
 import viewCountIcon from "../images/view-icon.png";
 import likeCountIcon from "../images/like-icon.png";
 import commentCounter from "../images/comment-icon.png";

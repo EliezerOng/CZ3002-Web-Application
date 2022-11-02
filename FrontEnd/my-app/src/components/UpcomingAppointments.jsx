@@ -1,7 +1,7 @@
 import React from "react";
 import AppointmentCard from "./AppointmentCard";
 import appointmentData from "./appointmentData";
-import "./Appointment.css";
+import "./css/Appointment.css";
 import history from "../history";
 
 function UpcomingAppointments() {

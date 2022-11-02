@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import "./LoginRegister.css";
+import "./css/LoginRegister.css";
 import { Link } from "react-router-dom";
 import mindfullLogo from "../images/mindfull-logo.png";
 

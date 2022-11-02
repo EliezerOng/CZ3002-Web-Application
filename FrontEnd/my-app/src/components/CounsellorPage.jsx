@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import CounsellorList from "./CounsellorList";
 import Maps from "./Map";
-import "./CounsellorPage.css";
+import "./css/CounsellorPage.css";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 

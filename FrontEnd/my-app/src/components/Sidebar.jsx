@@ -1,7 +1,7 @@
 import React from "react";
 import homelogo from "../images/house-solid.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./SideBar.css";
+import "./css/SideBar.css";
 import history from "../history";
 import { Link } from "react-router-dom";
 

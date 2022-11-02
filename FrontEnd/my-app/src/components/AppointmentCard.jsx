@@ -1,5 +1,5 @@
 import React from "react";
-import "./AppointmentCard.css";
+import "./css/AppointmentCard.css";
 import {
   faLocationDot,
   faCalendar,
