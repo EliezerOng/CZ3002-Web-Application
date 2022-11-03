@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import IndivPost from "./IndivPost";
-import { Link } from "react-router-dom";
 
 export default function Forum() {
   let history = useHistory();
@@ -31,6 +30,12 @@ export default function Forum() {
         if (card.pid == id) {
           newData.push(card);
           setSingleData(newData);
+
+          // [{"pid":18,"title":"fixed it","content":"kkkk","poster":"admin","poster_id":1,"createdAt":"2022-11-01T19:07:32.233738Z","likes":0,"comments":{},"commentCount":0}]
+          // console.log(JSON.stringify(newData));
+
+          // {"pid":18,"title":"fixed it","content":"kkkk","poster":"admin","poster_id":1,"createdAt":"2022-11-01T19:07:32.233738Z","likes":0,"comments":{},"commentCount":0}
+          // console.log(JSON.stringify(newData[0]));
           setIsSingle(true);
         }
       }
@@ -38,29 +43,42 @@ export default function Forum() {
     });
   }
 
-  const oneD = singleData.map((singleData) => {
-    return { ...singleData };
+  const oneD = singleData.map((prevSingleData) => {
+    return (
+      <IndivPost
+        key={prevSingleData.pid}
+        id={prevSingleData.pid}
+        {...prevSingleData}
+      />
+    );
   });
 
   const cards = data.map((data) => {
     return <PostCard key={data.pid} id={data.pid} {...data} select={select} />;
   });
 
-  if (isSingle) {
-    return (
-      <div className="forum-section">
-        <ForumHeader />
-        <IndivPost id="5" />
-      </div>
-    );
-  } else {
-    return (
-      <div className="forum-section">
-        <ForumHeader />
-        <section className="card">{cards}</section>
-      </div>
-    );
-  }
+  // if (isSingle) {
+  //   return (
+  //     <div className="forum-section">
+  //       <ForumHeader />
+  //       {/* <section>{oneD}</section> */}
+  //       <IndivPost />
+  //     </div>
+  //   );
+  // } else {
+  //   return (
+  //     <div className="forum-section">
+  //       <ForumHeader />
+  //       <section className="card">{cards}</section>
+  //     </div>
+  //   );
+  // }
+  return (
+    <div className="forum-section">
+      <ForumHeader />
+      <IndivPost />
+    </div>
+  );
 }
 
 // return (

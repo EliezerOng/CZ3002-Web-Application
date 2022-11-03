@@ -4,22 +4,12 @@ import viewCountIcon from "../images/view-icon.png";
 import commentCounter from "../images/comment-icon.png";
 import "./IndivPost.css";
 import { useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
 
-const IndivPost = (props) => {
+const IndivPost = () => {
   const [comment, setComment] = useState("");
-
-  const { pid } = useParams();
-
-  // const { type } = useParams();
-  // const statePid = useLocation().state.pid;
-  // console.log("Props id value = " + type);
-  // console.log("Props state pid value = " + statePid);
-  //const { pid } = location.state;
 
   return (
     <div className="whole-page">
-      <h1>{props.id}</h1>
       <div className="post">
         <div className="whole-content">
           <imgx
@@ -32,10 +22,7 @@ const IndivPost = (props) => {
               If quantum tunneling is real, why i nv see it happen
             </h1>
             <div className="timestamp"> 05:02am</div>
-            <div className="details">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue
-              magna justo, volutpat, non amet massa viverra euismod id.
-            </div>
+            <div className="details">@@@@</div>
           </div>
         </div>
         <div className="counters">
