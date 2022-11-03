@@ -4,7 +4,7 @@ import Counsellor from "./Counsellor";
 import BookAppt from "./BookAppt";
 import Axios from "axios";
 
-export default function CounsellorList() {
+export default function CounsellorList(props) {
   // const [data, setData] = useState([]);
   const [data, setData] = useState(data2);
   const [locationdata, setLocationData] = useState([]);
@@ -19,12 +19,16 @@ export default function CounsellorList() {
   // }, []);
 
   useEffect(() => {
-    geocode(data);
+    getCoords(data);
+    console.log("inside");
+    console.log(locationdata);
+    props.returnList(locationdata);
   }, []);
+  // console.log(data);
+  // console.log(locationdata);
 
-  console.log(locationdata);
-
-  function geocode(data) {
+  function getCoords(data) {
+    setLocationData([]);
     data.map(function (d) {
       Axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
         params: {

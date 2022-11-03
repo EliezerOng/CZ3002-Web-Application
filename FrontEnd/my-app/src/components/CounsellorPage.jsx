@@ -10,18 +10,13 @@ import Axios from "axios";
 function App() {
   // const navigate = useNavigate();
 
-  const location = {
-    address: "313@somerset",
-    lat: 1.3010128,
-    lng: 103.838539945158,
-  };
-
   // const [searchLocation, setSearchLocation] = useState([]);
   const [searchLocation, setSearchLocation] = useState([]);
+  const [locations, setLocations] = useState([]);
 
-  useEffect(() => {
-    setSearchLocation(location);
-  }, []);
+  // useEffect(() => {
+  //   setSearchLocation(location);
+  // }, []);
 
   // to update search location
   function handleLocation(event) {
@@ -60,13 +55,11 @@ function App() {
       });
   }
 
-  function test() {
-    // let a = geocode("Jurong Point").lat;
-    // let b = geocode("Jurong Point").lng;
-    // console.log(a);
-    // console.log(b);
+  function returnList(locations) {
+    console.log("here");
+    setLocations(locations);
   }
-  // test();
+  console.log(locations);
   return (
     <div className="cApp">
       <div className="right">
@@ -83,8 +76,8 @@ function App() {
         </div>
         {/* <h1 className="cn-text">counsellors nearby</h1> */}
         <div className="display">
-          <CounsellorList />
-          <Maps location={searchLocation} zoomLevel={14} />
+          <CounsellorList returnList={returnList} />
+          <Maps location={locations} zoomLevel={11} />
         </div>
       </div>
     </div>
