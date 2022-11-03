@@ -1,28 +1,44 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import "./BookAppt.css";
-import "./Calendar.css";
+import "./css/BookAppt.css";
+import "./css/Calendar.css";
 import Timeslots from "./Timeslots";
-
 // import "react-calendar/dist/Calendar.css";
 
 function BookAppt(props) {
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, "0");
+  }
+
+  function formatDate(date) {
+    return [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join("-");
+  }
+
   const [date, setDate] = useState(new Date());
   const [mydate, setMyDate] = useState(() => {
-    let d = Date();
-    let day = d.toString().split(" ")[2];
-    let month = d.toString().split(" ")[1];
-    let year = d.toString().split(" ")[3];
-    return day + "-" + month + "-" + year;
+    let d = new Date();
+    return formatDate(d);
   });
+  // const [mydate, setMyDate] = useState(() => {
+  //   let d = Date();
+  //   let day = d.toString().split(" ")[2];
+  //   let month = d.toString().split(" ")[1];
+  //   let year = d.toString().split(" ")[3];
+  //   return day + "-" + month + "-" + year;
+  // });
 
   function onChange(date) {
     setDate(date);
-    let day = date.toString().split(" ")[2];
-    let month = date.toString().split(" ")[1];
-    let year = date.toString().split(" ")[3];
-    let mydate = day + "-" + month + "-" + year;
-    setMyDate(mydate);
+    // let day = date.toString().split(" ")[2];
+    // let month = date.toString().split(" ")[1];
+    // let year = date.toString().split(" ")[3];
+    // let mydate = day + "-" + month + "-" + year;
+    // setMyDate(mydate);
+    setMyDate(formatDate(date));
   }
   return (
     <div className="background2">
@@ -44,9 +60,9 @@ function BookAppt(props) {
             <Calendar onChange={onChange} value={date} />
           </div>
           <div className="slots">
-            <h1>
+            <h2 className="smallheader">
               available slots for <span className="inlinedate">{mydate}</span>
-            </h1>
+            </h2>
             <Timeslots date={mydate} id={props.display.counsellorID} />
           </div>
         </div>

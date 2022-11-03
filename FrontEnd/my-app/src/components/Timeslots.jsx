@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./BookAppt.css";
+import "./css/BookAppt.css";
 import slots from "../slots";
 import Axios from "axios";
 
@@ -34,13 +34,27 @@ export default function Timeslots(props) {
   `;
   //   end styling segment
 
+  const allslots = [
+    "09:00",
+    "10:00",
+    "11:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+  ];
   const types = [];
   const slotElements = slots.map(function (s) {
     if (s.counsellorID === props.id && s.date === props.date) {
       let slotArray = s.slots;
-      slotArray.map((each) =>
-        types.push(each.split("M")[1] + " " + each.split("M")[0] + "M")
-      );
+      allslots.map(function (all) {
+        if (!slotArray.includes(all)) {
+          types.push(all);
+        }
+      });
     }
   });
   const [active, setActive] = useState([]);
@@ -95,16 +109,16 @@ export default function Timeslots(props) {
         console.log("done posting");
       })
       .catch((err) => console.log(err));
-    window.location.reload();
+    // window.location.reload();
   }
 
   return (
     <div className="displayslots">
       <ToggleGroup />
-      <h1 className="selectedslot">
+      <h2 className="selectedslot">
         selected: <span className="selecteddate">{active2} </span>
         <span className="selectedtime"> {active}</span>
-      </h1>
+      </h2>
       <button className="submitbtn2" onClick={handleUpdate}>
         submit
       </button>

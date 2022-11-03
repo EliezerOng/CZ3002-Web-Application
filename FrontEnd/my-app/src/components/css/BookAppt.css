@@ -84,19 +84,23 @@
   height: 55%;
 }
 
+.smallheader {
+  margin: 0;
+}
+
 .inlinedate {
   color: #006edc;
 }
 
 .slots {
-  /* border: 4px solid orange; */
+  border: 4px solid orange;
   height: 45%;
-  padding-left: 40px;
+  padding-left: 10px;
 }
 
 .displayslots {
-  /* border: 2px solid black; */
-  height: 200px;
+  border: 2px solid black;
+  height: auto;
   position: relative;
 }
 
@@ -118,9 +122,9 @@
 }
 
 .eachslot {
-  width: 150px;
+  width: 100px;
   font-weight: bolder;
-  font-size: 2em;
+  font-size: 1.2em;
   text-align: center;
   padding: 10px;
   border: none;
@@ -131,14 +135,14 @@
 }
 
 .submitbtn2 {
-  width: 120px;
+  width: 100px;
   height: 50px;
   cursor: pointer;
   position: absolute;
   top: 139px;
-  left: 750px;
+  left: 40vw;
   font-family: "Open Sans", sans-serif;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 900;
   background-color: rgb(212, 212, 212);
   color: rgb(50, 50, 50);
