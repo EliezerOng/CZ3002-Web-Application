@@ -86,6 +86,7 @@
 
 .smallheader {
   margin: 0;
+  margin-bottom: 20px;
 }
 
 .inlinedate {
@@ -96,29 +97,6 @@
   border: 4px solid orange;
   height: 45%;
   padding-left: 10px;
-}
-
-.displayslots {
-  border: 2px solid black;
-  height: auto;
-  position: relative;
-}
-
-.selectedslot {
-  /* border: 2px solid gray; */
-  border-radius: 10px;
-  background-color: #00a6ff;
-  color: white;
-  padding: 10px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 120px;
-}
-
-.selecteddate {
-  margin: 0px 15px;
 }
 
 .eachslot {
@@ -134,17 +112,47 @@
   font-family: "Open Sans", sans-serif;
 }
 
+/* .displayslots {
+  border: 2px solid black;
+  height: auto;
+  position: relative;
+} */
+
+.booking {
+  /* border: 2px solid black; */
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selectedslot {
+  border-radius: 10px;
+  background-color: #00a6ff;
+  color: white;
+  padding: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.selecteddate {
+  margin: 0px 15px;
+}
+
 .submitbtn2 {
+  border: none;
   width: 100px;
   height: 50px;
   cursor: pointer;
-  position: absolute;
-  top: 139px;
-  left: 40vw;
   font-family: "Open Sans", sans-serif;
   font-size: 1.2em;
   font-weight: 900;
   background-color: rgb(212, 212, 212);
   color: rgb(50, 50, 50);
-  border: none;
+}
+
+.submitbtn2:hover {
+  background-color: #00a6ff;
+  color: white;
 }

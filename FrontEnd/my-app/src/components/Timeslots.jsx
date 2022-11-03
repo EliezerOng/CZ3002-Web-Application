@@ -28,6 +28,7 @@ export default function Timeslots(props) {
   `}
   `;
   const ButtonGroup = styled.div`
+    height: 120px;
     display: grid;
     gap: 20px;
     grid-template-columns: auto auto auto auto auto;
@@ -113,15 +114,17 @@ export default function Timeslots(props) {
   }
 
   return (
-    <div className="displayslots">
+    <div>
       <ToggleGroup />
-      <h2 className="selectedslot">
-        selected: <span className="selecteddate">{active2} </span>
-        <span className="selectedtime"> {active}</span>
-      </h2>
-      <button className="submitbtn2" onClick={handleUpdate}>
-        submit
-      </button>
+      <div className="booking">
+        <h2 className="selectedslot">
+          selected: <span className="selecteddate">{active2} </span>
+          <span className="selectedtime"> {active}</span>
+        </h2>
+        <button className="submitbtn2" onClick={handleUpdate}>
+          submit
+        </button>
+      </div>
     </div>
   );
 }
