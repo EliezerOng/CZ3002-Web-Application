@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import Axios from "axios";
+
 import "./css/AppointmentCard.css";
 import {
   faLocationDot,
@@ -7,24 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// const AppointmentCard = (props) => {
-//   return (
-//     <div className="card-wrapper">
-//       <div className="counsellor">
-//         <img src={"../images/${props.image}"} alt="image" />
-//         <h1>{props.name}</h1>
-//       </div>
-//       <div className="date-time">
-//         {props.date} {props.time}
-//       </div>
-//       <button>Cancel</button>
-//     </div>
-//   );
-// };
-
-// export default AppointmentCard;
-
-const AppointmentCard = (props) => {
+const UpcomingAppointmentCard = (props) => {
   return (
     <div className="card-wrapper">
       <div className="counsellor">
@@ -33,7 +18,7 @@ const AppointmentCard = (props) => {
           className="counsellor-pic"
           alt="image"
         />
-        <p className="counsellor-name">{props.name}</p>
+        <p className="counsellor-name">{props.counsellorName}</p>
       </div>
       <div className="counsellor-address">
         <FontAwesomeIcon icon={faLocationDot} />
@@ -49,9 +34,8 @@ const AppointmentCard = (props) => {
           <p>{props.time}</p>
         </div>
       </div>
-      <button className="cancel-button">Cancel</button>
     </div>
   );
 };
 
-export default AppointmentCard;
+export default UpcomingAppointmentCard;
