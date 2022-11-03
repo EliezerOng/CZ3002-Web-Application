@@ -12,7 +12,7 @@ class PostListCreate(generics.ListCreateAPIView):
     serializer_class = PostSerializer
 
     # Enforces that only authenticated user can access this API
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     # Override this method to filter data from DB to display on API
     # Display all post objects
@@ -30,7 +30,7 @@ class PostListCreate(generics.ListCreateAPIView):
 # Class based view for retrieving and deleting Post APIs using RetrieveDestroyAPIView (GET, DELETE)
 class PostRetrieveDestroy(generics.RetrieveDestroyAPIView):
     serializer_class = PostSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         queryset = Post.objects.all().order_by('-createdAt')
@@ -50,7 +50,7 @@ class PostRetrieveDestroy(generics.RetrieveDestroyAPIView):
 # Class based view for deleting Like APIs using DestroyModelMixin (DELETE)
 class LikeListCreateDestroy(generics.ListCreateAPIView, mixins.DestroyModelMixin):
     serializer_class = LikeSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     # Override this method to filter data from DB to display on API
     # Display all votes for the corresponding post id
@@ -90,7 +90,7 @@ class LikeListCreateDestroy(generics.ListCreateAPIView, mixins.DestroyModelMixin
 # Class based view for listing and creating Comment APIs using ListCreateAPIView (GET and POST)
 class CommentListCreate(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     # Override this method to filter data from DB to display on API
     # Display all comments for the corresponding post id
@@ -118,7 +118,7 @@ class CommentListCreate(generics.ListCreateAPIView):
 # Class based view for retrieving and deleting Comment APIs using ListAPIView and DestroyModelMixin (GET, DELETE)
 class CommentListDestroy(generics.ListAPIView, mixins.DestroyModelMixin):
     serializer_class = CommentSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     # Override this method to filter data from DB to display on API
     # Display all comments for the corresponding post id

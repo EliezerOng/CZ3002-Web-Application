@@ -1,8 +1,9 @@
 import React from "react";
 import homelogo from "../images/house-solid.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./SideBar.css";
+import "./css/SideBar.css";
 import history from "../history";
+import { Link } from "react-router-dom";
 
 export default function SideBar(props) {
   function redirectCP() {
@@ -13,6 +14,9 @@ export default function SideBar(props) {
   }
   function redirectLP() {
     history.push("/Login");
+  }
+  function redirectAP() {
+    history.push("/UpcomingAppointments");
   }
   return (
     <div className="side-bar">
@@ -40,13 +44,13 @@ export default function SideBar(props) {
             <h1>Counsellor</h1>
           </div>
 
-          <div className="appointment-box">
+          <div className="appointment-box" onClick={redirectAP}>
             <img
               src={homelogo}
               alt="appointment logo"
               className="appointment-logo"
             />
-            <h1>Appointment</h1>
+            <h1>Appointments</h1>
           </div>
         </div>
       </div>

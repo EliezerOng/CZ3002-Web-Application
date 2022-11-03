@@ -2,17 +2,27 @@ import React from "react";
 import mindfullLogo from "../images/mindfull-logo.png";
 import viewCountIcon from "../images/view-icon.png";
 import commentCounter from "../images/comment-icon.png";
-import "./IndivPost.css";
+import "./css/IndivPost.css";
 import { useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
 
-const IndivPost = () => {
+const IndivPost = (props) => {
   const [comment, setComment] = useState("");
+
+  const { pid } = useParams();
+
+  // const { type } = useParams();
+  // const statePid = useLocation().state.pid;
+  // console.log("Props id value = " + type);
+  // console.log("Props state pid value = " + statePid);
+  //const { pid } = location.state;
 
   return (
     <div className="whole-page">
+      <h1>{props.id}</h1>
       <div className="post">
         <div className="whole-content">
-          <img
+          <imgx
             src={mindfullLogo}
             alr="test-profile-pic"
             className="profile-pic image"

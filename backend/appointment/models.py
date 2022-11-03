@@ -26,12 +26,12 @@ class Appointment(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     counsellorID = models.ForeignKey("Counsellor", db_column="counsellorID", on_delete=models.CASCADE)
-    completed = models.BooleanField()
 
 class Counsellor(models.Model):
     counsellorID = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100)
     languages = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-    images = models.ImageField(upload_to="counsellorImage")
+    images = models.CharField(max_length=300)
     address = models.CharField(max_length=300)
+    postal_code = models.CharField(max_length = 6)

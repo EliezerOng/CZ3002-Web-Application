@@ -1,14 +1,20 @@
 import React from "react";
 import homelogo from "../images/house-solid.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./PostCard.css";
+import "./css/PostCard.css";
 import viewCountIcon from "../images/view-icon.png";
 import likeCountIcon from "../images/like-icon.png";
 import commentCounter from "../images/comment-icon.png";
+import { useParams } from "react-router-dom";
 
 export default function PostCard(props) {
+  const { pid } = useParams();
+
   return (
-    <div className="post-card">
+    // <div>
+    //   <h1>{pid}</h1>
+    // </div>
+    <div className="post-card" onClick={() => props.select(props.id)}>
       <div className="container-1">
         <div className="box-1">
           <h1 className="post-title"> {props.title}</h1>
@@ -22,7 +28,6 @@ export default function PostCard(props) {
       <div className="container-2">
         <h1 className="post-description">{props.content}</h1>
       </div>
-
       <div className="container-3">
         <div className="box-1">
           <img

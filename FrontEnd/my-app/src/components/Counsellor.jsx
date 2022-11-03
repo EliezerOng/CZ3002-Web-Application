@@ -1,5 +1,5 @@
 import React from "react";
-import "./CounsellorPage.css";
+import "./css/CounsellorPage.css";
 
 export default function Counsellor(props) {
   return (
