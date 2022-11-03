@@ -47,10 +47,12 @@ export default function Timeslots(props) {
     "18:00",
     "19:00",
   ];
-  const types = [];
+  var types = [];
+  types = allslots;
   const slotElements = slots.map(function (s) {
     if (s.counsellorID === props.id && s.date === props.date) {
       let slotArray = s.slots;
+      types = [];
       allslots.map(function (all) {
         if (!slotArray.includes(all)) {
           types.push(all);
