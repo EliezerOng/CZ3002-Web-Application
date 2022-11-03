@@ -1,5 +1,5 @@
 import React from "react";
-import AppointmentCard from "./AppointmentCard";
+import UpcomingAppointmentCard from "./UpcomingAppointmentCard";
 import appointmentData from "./appointmentData";
 import "./css/Appointment.css";
 import history from "../history";
@@ -9,7 +9,12 @@ import { useEffect, useState } from "react";
 function UpcomingAppointments() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    Axios.get("http://127.0.0.1:8000/api/appointment/upcoming")
+    Axios.get("http://127.0.0.1:8000/api/appointment/upcoming", {
+      auth: {
+        username: "admin",
+        password: "admin123",
+      },
+    })
       .then((res) => {
         console.log("Getting from ::::", res.data);
         setData(res.data);
@@ -18,7 +23,7 @@ function UpcomingAppointments() {
   }, []);
 
   const cards = data.map((data) => {
-    return <AppointmentCard key={data.appointmentID} {...data} />;
+    return <UpcomingAppointmentCard key={data.appointmentID} {...data} />;
   });
 
   function redirectToCompleted() {

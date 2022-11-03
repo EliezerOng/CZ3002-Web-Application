@@ -7,7 +7,7 @@ const CancelAppointment = (props) => {
         Are you sure you want to cancel this appointment?
       </span>
 
-      <button className="confirm-delete" onClick={a}>
+      <button className="confirm-delete" onClick={props.handleDelete}>
         Confirm
       </button>
       <button className="dont-delete" onClick={props.handleClose}>

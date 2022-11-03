@@ -8,9 +8,9 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NewPost from "./NewPost";
+import CancelAppointment from "./CancelAppointment";
 
-const AppointmentCard = (props) => {
+const UpcomingAppointmentCard = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -23,36 +23,21 @@ const AppointmentCard = (props) => {
     setConfirmDelete(true);
     console.log("confirm delete: " + confirmDelete);
 
-    Axios.delete(`http://127.0.0.1:8000/api/appointment/posts/${props.key}`, {
-      auth: {
-        username: "admin",
-        password: "admin123",
-      },
-    })
+    Axios.delete(
+      `http://127.0.0.1:8000/api/appointment/upcoming/${props.appointmentID}`,
+      {
+        auth: {
+          username: "admin",
+          password: "admin123",
+        },
+      }
+    )
       .then((res) => {
         console.log("done deleting");
       })
       .catch((err) => console.log(err));
-    window.location.reload();
+    // window.location.reload();
   }
-
-  // function updateDatabase() {
-  //   const article = {
-  //     title: newPost.title,
-  //     content: newPost.content,
-  //   };
-  //   Axios.delete(`http://127.0.0.1:8000/api/forum/posts/${this.state.pid}`, article, {
-  //     auth: {
-  //       username: "admin",
-  //       password: "admin123",
-  //     },
-  //   })
-  //     .then((res) => {
-  //       console.log("done deleting");
-  //     })
-  //     .catch((err) => console.log(err));
-  //   window.location.reload();
-  // }
 
   return (
     <div className="card-wrapper">
@@ -83,7 +68,7 @@ const AppointmentCard = (props) => {
       </button>
 
       {isOpen && (
-        <NewPost
+        <CancelAppointment
           className="createPost"
           handleClose={togglePopup}
           handleDelete={handleDelete}
@@ -93,4 +78,4 @@ const AppointmentCard = (props) => {
   );
 };
 
-export default AppointmentCard;
+export default UpcomingAppointmentCard;

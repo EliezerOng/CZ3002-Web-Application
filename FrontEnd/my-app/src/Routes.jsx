@@ -9,7 +9,6 @@ import CounsellorPage from "./components/CounsellorPage";
 import App from "./App";
 import history from "./history";
 import UpcomingAppointments from "./components/UpcomingAppointments";
-import AppointmentCard from "./components/AppointmentCard";
 import PostCard from "./components/PostCard";
 import CompletedAppointments from "./components/CompletedAppointments";
 import IndivPost from "./components/IndivPost";
@@ -40,7 +39,6 @@ export default class Routes extends Component {
             path="/CompletedAppointments"
             component={CompletedAppointments}
           />
-          <Route path="/AppointmentCard" component={AppointmentCard} />
           <Route path="/Test" component={Test} />
         </Switch>
       </Router>
