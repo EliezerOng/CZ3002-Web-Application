@@ -29,12 +29,45 @@ const IndivPost = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault();
+    updateDatabase();
     console.log("form submitted ");
     console.log(comment["admin"]);
   }
 
+  function updateDatabase() {
+    const replaceD = comment;
+    const replaceDF = {
+      comments: replaceD,
+    };
+
+    const fulldummy = {
+      pid: 1,
+      title: "This is my first post",
+      content: "This is a very interesting post :)",
+      poster: "admin",
+      poster_id: 1,
+      createdAt: "2022-10-04T14:49:30.819127Z",
+      likes: 0,
+      comments: {
+        admin: ["NONONONONONO", "FAKKKKKK"],
+        admin2: ["HEHEHEHEHEHHEE"],
+      },
+      commentCount: 3,
+    };
+    Axios.put("http://127.0.0.1:8000/api/forum/posts/1", fulldummy, {
+      auth: {
+        username: "admin",
+        password: "admin123",
+      },
+    })
+      .then((res) => {
+        console.log("done putting");
+      })
+      .catch((err) => console.log(err));
+  }
+
   console.log("@@@@@@@@@@@@@@");
-  console.log(comment["admin"]);
+  console.log(comment);
 
   let kArr = Object.keys(comment);
   let vArr = Object.values(comment);

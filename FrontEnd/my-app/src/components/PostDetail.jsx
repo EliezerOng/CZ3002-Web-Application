@@ -4,8 +4,25 @@ import Axios from "axios";
 import viewCountIcon from "../images/view-icon.png";
 import likeCountIcon from "../images/like-icon.png";
 import commentCounter from "../images/comment-icon.png";
+import deleIcon from "../images/delete.png";
+import Modal from "./Modal";
 
 export default function PostDetail(props) {
+  function delePost() {
+    Axios.post(`http://127.0.0.1:8000/api/forum/posts/${props.pid}`)
+      .then((res) => {
+        console.log("done deleting");
+      })
+      .catch((err) => console.log(err));
+    //window.location.reload();
+  }
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <div className="post-detail">
       <div className="container-1">
@@ -38,7 +55,12 @@ export default function PostDetail(props) {
           />
           <h1 className="comment-counter-h1">{props.commentCount}</h1>
         </div>
+        <div className="box-3" onClick={openModal}>
+          <img src={deleIcon} alt="deleteIcon" className="delete-icon" />
+        </div>
       </div>
+
+      {isOpen && <Modal delePost={delePost} openModal={openModal} />}
     </div>
   );
 }
