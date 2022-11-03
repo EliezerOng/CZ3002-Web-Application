@@ -86,6 +86,10 @@
   height: 55%;
 }
 
+.inlinedate {
+  color: blue;
+}
+
 .slots {
   /* border: 4px solid orange; */
   height: 45%;
@@ -107,9 +111,19 @@
   font-size: 2em;
   text-align: center;
   padding: 10px;
+  border: none;
   border-radius: 10px;
   background-color: rgb(225, 225, 225);
   cursor: pointer;
+}
+
+.clicked {
+  background-color: aquamarine;
+}
+
+.eachslot:hover {
+  background: #76baff;
+  color: white;
 }
 
 .submitbtn2 {

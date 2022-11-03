@@ -6,7 +6,6 @@ export default [
   },
   {
     counsellor: "Chloe",
-
     date: "04-Nov-2022",
     slots: ["AM10", "PM3", "PM4"],
   },

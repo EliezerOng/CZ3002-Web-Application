@@ -43,9 +43,12 @@ function BookAppt(props) {
             <Calendar onChange={onChange} value={date} />
           </div>
           <div className="slots">
-            <h1>available slots for {mydate}</h1>
+            <h1>
+              available slots for <span className="inlinedate">{mydate}</span>
+            </h1>
             <Timeslots date={mydate} name={props.display.name} />
           </div>
+
           <button className="submitbtn2" onClick={props.handleUpdate}>
             submit
           </button>
