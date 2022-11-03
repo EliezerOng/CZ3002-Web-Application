@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import Axios from "axios";
+
 import "./css/AppointmentCard.css";
 import {
   faLocationDot,
@@ -6,25 +8,52 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-// const AppointmentCard = (props) => {
-//   return (
-//     <div className="card-wrapper">
-//       <div className="counsellor">
-//         <img src={"../images/${props.image}"} alt="image" />
-//         <h1>{props.name}</h1>
-//       </div>
-//       <div className="date-time">
-//         {props.date} {props.time}
-//       </div>
-//       <button>Cancel</button>
-//     </div>
-//   );
-// };
-
-// export default AppointmentCard;
+import NewPost from "./NewPost";
 
 const AppointmentCard = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+    setConfirmDelete(false);
+  };
+
+  function handleDelete(event) {
+    setConfirmDelete(true);
+    console.log("confirm delete: " + confirmDelete);
+
+    Axios.delete(`http://127.0.0.1:8000/api/appointment/posts/${props.key}`, {
+      auth: {
+        username: "admin",
+        password: "admin123",
+      },
+    })
+      .then((res) => {
+        console.log("done deleting");
+      })
+      .catch((err) => console.log(err));
+    window.location.reload();
+  }
+
+  // function updateDatabase() {
+  //   const article = {
+  //     title: newPost.title,
+  //     content: newPost.content,
+  //   };
+  //   Axios.delete(`http://127.0.0.1:8000/api/forum/posts/${this.state.pid}`, article, {
+  //     auth: {
+  //       username: "admin",
+  //       password: "admin123",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       console.log("done deleting");
+  //     })
+  //     .catch((err) => console.log(err));
+  //   window.location.reload();
+  // }
+
   return (
     <div className="card-wrapper">
       <div className="counsellor">
@@ -33,7 +62,7 @@ const AppointmentCard = (props) => {
           className="counsellor-pic"
           alt="image"
         />
-        <p className="counsellor-name">{props.name}</p>
+        <p className="counsellor-name">{props.counsellorName}</p>
       </div>
       <div className="counsellor-address">
         <FontAwesomeIcon icon={faLocationDot} />
@@ -49,7 +78,17 @@ const AppointmentCard = (props) => {
           <p>{props.time}</p>
         </div>
       </div>
-      <button className="cancel-button">Cancel</button>
+      <button className="cancel-button" onClick={togglePopup}>
+        Cancel
+      </button>
+
+      {isOpen && (
+        <NewPost
+          className="createPost"
+          handleClose={togglePopup}
+          handleDelete={handleDelete}
+        />
+      )}
     </div>
   );
 };

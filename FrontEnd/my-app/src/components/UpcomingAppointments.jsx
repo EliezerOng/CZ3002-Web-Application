@@ -3,10 +3,22 @@ import AppointmentCard from "./AppointmentCard";
 import appointmentData from "./appointmentData";
 import "./css/Appointment.css";
 import history from "../history";
+import Axios from "axios";
+import { useEffect, useState } from "react";
 
 function UpcomingAppointments() {
-  const cards = appointmentData.map((data) => {
-    return <AppointmentCard key={data.id} {...data} />;
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    Axios.get("http://127.0.0.1:8000/api/appointment/upcoming")
+      .then((res) => {
+        console.log("Getting from ::::", res.data);
+        setData(res.data);
+      })
+      .catch((err) => console.log(err.res.data));
+  }, []);
+
+  const cards = data.map((data) => {
+    return <AppointmentCard key={data.appointmentID} {...data} />;
   });
 
   function redirectToCompleted() {
