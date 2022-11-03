@@ -8,15 +8,6 @@ import Axios from "axios";
 
 const IndivPost = (props) => {
   const [comment, setComment] = useState(props.comments);
-
-  const [newComment, setNewComment] = useState("");
-
-  // function handleNewComment(event) {
-  //   const { name, value } = event.target;
-  //   comment[name].push(value);
-  //   console.log(comment[name]);
-  // }
-
   const [commentString, setCommentString] = useState("");
 
   function handleGatherString(event) {
@@ -25,8 +16,14 @@ const IndivPost = (props) => {
   }
 
   function handleNewComment(event) {
-    const { name } = event.target;
-    comment[name].push(commentString);
+    setComment((prevComment) => {
+      let newArray = prevComment[event.target.name];
+      newArray.push(commentString);
+      return {
+        ...prevComment,
+        [event.target.name]: newArray,
+      };
+    });
     setCommentString("");
   }
 
