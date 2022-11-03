@@ -9,7 +9,8 @@ export default [
   {
     id: 1,
     name: "Chloe",
-    address: "Toh Payoh Avenue 2",
+    address: "Jurong Point",
+    // address: "Toh Payoh Avenue 2",
     languages: "English, Chinese",
     description:
       "Chloe works with children, youths, and adults. She is comfortable with and welcomes everyone for counselling. Embodying a gentle and patient approach, she journeys with her clients at their preferred pace.",

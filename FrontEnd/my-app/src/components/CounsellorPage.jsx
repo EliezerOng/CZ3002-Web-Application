@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import CounsellorList from "./CounsellorList";
 import Maps from "./Map";
 import "./css/CounsellorPage.css";
-import axios from "axios";
+import Axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -22,30 +22,6 @@ function App() {
   useEffect(() => {
     setSearchLocation(location);
   }, []);
-
-  // function geocode(addr) {
-  //   axios
-  //     .get("https://maps.googleapis.com/maps/api/geocode/json", {
-  //       params: {
-  //         address: addr,
-  //         key: "AIzaSyC3uv7NhGvdRlcmbc-fGt9TLuZ1KnOWeMI",
-  //       },
-  //     })
-  //     .then(function (response) {
-  //       setSearchLocation({
-  //         address: addr,
-  //         lat: response.data.results[0].geometry.location.lat,
-  //         lng: response.data.results[0].geometry.location.lng,
-  //       });
-
-  //       // console.log(response.data.results[0].geometry.location);
-  //       // console.log(response.data.results[0].geometry.location.lat);
-  //       // console.log(response.data.results[0].geometry.location.lng);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
 
   // to update search location
   function handleLocation(event) {
@@ -65,24 +41,19 @@ function App() {
   console.log(searchLocation);
 
   function geocode(addr) {
-    axios
-      .get("https://maps.googleapis.com/maps/api/geocode/json", {
-        params: {
-          address: addr,
-          // API KEY !!! TO BE COMMENTED OUT
-          key: "AIzaSyAgUyxkZaBToNh8lpmhkrrxM-J3K5eNe-g",
-        },
-      })
+    Axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+      params: {
+        address: addr,
+        // API KEY !!! TO BE COMMENTED OUT
+        key: "AIzaSyAgUyxkZaBToNh8lpmhkrrxM-J3K5eNe-g",
+      },
+    })
       .then(function (response) {
         setSearchLocation({
           address: addr,
           lat: response.data.results[0].geometry.location.lat,
           lng: response.data.results[0].geometry.location.lng,
         });
-
-        // console.log(response.data.results[0].geometry.location);
-        // console.log(response.data.results[0].geometry.location.lat);
-        // console.log(response.data.results[0].geometry.location.lng);
       })
       .catch(function (error) {
         console.log(error);
@@ -90,26 +61,12 @@ function App() {
   }
 
   function test() {
-    console.log("in test");
-    // axios
-    //   .get("http://127.0.0.1:8000/api/forum/posts?format=json")
-    axios({
-      method: "GET",
-      url: "http://127.0.0.1:8000/api/forum/posts?format=json",
-    })
-      .then(function (response) {
-        console.log(response);
-
-        // console.log(response.data.results[0].geometry.location);
-        // console.log(response.data.results[0].geometry.location.lat);
-        // console.log(response.data.results[0].geometry.location.lng);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    console.log("out test");
+    // let a = geocode("Jurong Point").lat;
+    // let b = geocode("Jurong Point").lng;
+    // console.log(a);
+    // console.log(b);
   }
-  test();
+  // test();
   return (
     <div className="cApp">
       <div className="right">
