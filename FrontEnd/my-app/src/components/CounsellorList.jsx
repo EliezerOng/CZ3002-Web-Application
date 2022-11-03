@@ -12,12 +12,15 @@ export default function CounsellorList() {
   const [newPost, setNewPost] = useState([]);
   const [display, setDisplay] = useState([]);
 
-  function togglePopup(name, address) {
+  function togglePopup(name, address, languages, description, image) {
     setIsOpen(!isOpen);
     setNewPost([]);
     setDisplay({
       name: name,
       address: address,
+      languages: languages,
+      description: description,
+      image: image,
     });
   }
   // const togglePopup = () => {

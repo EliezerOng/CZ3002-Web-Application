@@ -10,7 +10,7 @@
   align-items: center;
 }
 .popup-whole {
-  background-color: pink;
+  background-color: white;
   position: relative;
   width: 90%;
   height: 90%;
@@ -18,33 +18,22 @@
   border-radius: 10px;
   padding: 20px;
   border: 1px solid #999;
-  border: 5px solid green;
+  /* border: 5px solid green; */
 
   display: flex;
 }
-
-.popup-left {
-  border: 5px solid blue;
-  width: 30%;
-  height: auto;
-  background: #fff;
-  padding: 20px;
+.popup-whole h1 {
+  font-size: 180%;
 }
 
-.popup-right {
-  border: 5px solid red;
-  width: 70%;
-  height: auto;
-  background: #fff;
-  padding: 20px;
-}
-
-.close-icon {
+.close-icon2 {
   content: "x";
   cursor: pointer;
   position: fixed;
-  right: calc(26% - 28px);
+  right: calc(5%);
   top: calc(100vh - 85vh - 30px);
+  /* right: calc(26% - 28px);
+  top: calc(100vh - 85vh - 30px); */
   background: grey;
   color: white;
   width: 25px;
@@ -56,33 +45,74 @@
   font-size: 20px;
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  /* border: 2px solid red; */
-  min-height: 50vh;
+/* left side */
+.popup-left {
+  /* border: 5px solid blue; */
+  width: 30%;
+  height: auto;
+  background: #fff;
+  /* padding: 10px; */
+  padding: 0 15px;
 }
-.input {
-  display: flex;
-  justify-content: space-between;
-  width: 95%;
-  /* border: 2px solid blue; */
-  font-size: 1.2em;
+.popup-left img {
+  width: 60%;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.Title input {
-  width: 85%;
-  border: 2px solid black;
-  margin-top: -5px;
+.popup-left h2 {
+  /* border: 2px solid black; */
+  margin: 0;
 }
-.Content textarea {
-  width: 85%;
-  height: 200px;
-  border: 2px solid black;
-  margin-top: -5px;
+
+.popup-left p {
+  /* border: 2px solid black; */
+  font-size: 1em;
+  margin-top: 10px;
+  /* line-height: 2em; */
 }
-.submitbtn {
+
+/* right side */
+.popup-right {
+  /* border: 5px solid red; */
+  width: 70%;
+  height: auto;
+  background: #fff;
+  padding: 0 20px;
+}
+
+.calendar {
+  /* border: 4px solid yellow; */
+  height: 55%;
+}
+
+.slots {
+  /* border: 4px solid orange; */
+  height: 45%;
+  padding-left: 40px;
+}
+
+.slotbox {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: auto auto auto auto auto;
+}
+/* .slotbox div + div {
+  margin-left: 40px;
+} */
+
+.eachslot {
+  width: 150px;
+  font-weight: bolder;
+  font-size: 2em;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(225, 225, 225);
+  cursor: pointer;
+}
+
+.submitbtn2 {
   width: 100px;
   height: 30px;
   cursor: pointer;

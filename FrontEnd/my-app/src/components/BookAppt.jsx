@@ -1,46 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
+import Calendar from "react-calendar";
 import "./BookAppt.css";
+import "./Calendar.css";
+import Timeslots from "./Timeslots";
 
-const BookAppt = (props) => {
+// import "react-calendar/dist/Calendar.css";
+
+function BookAppt(props) {
+  const [date, setDate] = useState(new Date());
+  const [mydate, setMyDate] = useState(() => {
+    let d = Date();
+    let day = d.toString().split(" ")[2];
+    let month = d.toString().split(" ")[1];
+    let year = d.toString().split(" ")[3];
+    return day + "-" + month + "-" + year;
+  });
+
+  function onChange(date) {
+    setDate(date);
+    let day = date.toString().split(" ")[2];
+    let month = date.toString().split(" ")[1];
+    let year = date.toString().split(" ")[3];
+    let mydate = day + "-" + month + "-" + year;
+    setMyDate(mydate);
+  }
   return (
     <div className="background2">
       <div className="popup-whole">
+        <span className="close-icon2" onClick={props.handleClose}>
+          x
+        </span>
         <div className="popup-left">
-          <h1>name: {props.display.name}</h1>
-          <h1>addr: {props.display.address}</h1>
+          <h1>counsellor details</h1>
+          <img src={`./images/${props.display.image}`} alt="image" />
+          <h2 className="popup-name">{props.display.name}</h2>
+          <p>{props.display.address}</p>
+          <p>Languages: {props.display.languages}</p>
+          <p>{props.display.description}</p>
         </div>
         <div className="popup-right">
-          <span className="close-icon" onClick={props.handleClose}>
-            x
-          </span>
-          <div className="info">
-            <p className="input Title">
-              title:
-              <input
-                type="text"
-                id="title"
-                name="title"
-                value={props.info.title}
-                onChange={props.handleChange}
-              />
-            </p>
-            <p className="input Content">
-              hey:
-              <textarea
-                id="content"
-                name="content"
-                value={props.info.content}
-                onChange={props.handleChange}
-              ></textarea>
-            </p>
-            <button className="submitbtn" onClick={props.handleUpdate}>
-              submit
-            </button>
+          <div className="calendar">
+            <Calendar onChange={onChange} value={date} />
           </div>
+          <div className="slots">
+            <h1>available slots for {mydate}</h1>
+            <Timeslots date={mydate} name={props.display.name} />
+          </div>
+          <button className="submitbtn2" onClick={props.handleUpdate}>
+            submit
+          </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default BookAppt;

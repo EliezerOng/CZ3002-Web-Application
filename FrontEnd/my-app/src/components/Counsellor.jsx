@@ -5,7 +5,15 @@ export default function Counsellor(props) {
   return (
     <div
       className="ccard"
-      onClick={() => props.handleClick(props.name, props.address)}
+      onClick={() =>
+        props.handleClick(
+          props.name,
+          props.address,
+          props.languages,
+          props.description,
+          props.image
+        )
+      }
     >
       <img src={`./images/${props.image}`} alt="image" />
 
