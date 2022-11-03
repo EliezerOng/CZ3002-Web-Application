@@ -1,14 +1,13 @@
-import React from "react";
-import homelogo from "../images/house-solid.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./css/PostCard.css";
+import "./css/PostDetail.css";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 import viewCountIcon from "../images/view-icon.png";
 import likeCountIcon from "../images/like-icon.png";
 import commentCounter from "../images/comment-icon.png";
 
-export default function PostCard(props) {
+export default function PostDetail(props) {
   return (
-    <div className="post-card" onClick={() => props.select(props.id)}>
+    <div className="post-detail">
       <div className="container-1">
         <div className="box-1">
           <h1 className="post-title"> {props.title}</h1>

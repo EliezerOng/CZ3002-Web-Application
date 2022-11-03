@@ -1,12 +1,41 @@
-.post-card {
+.comment-card {
   box-sizing: border-box;
   width: 70vw;
   height: auto;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 4px 2px #00000040;
-  margin-bottom: 5%;
-  border-radius: 5px;
+  box-shadow: 0px 0px 1px 1px #00000040;
+  margin-bottom: 0.2%;
+  padding: 0 0;
+  border-radius: 1px;
+}
+
+.comment-card .container-1 {
+  display: flex;
+  align-items: center;
+  margin-left: 4%;
+  margin-top: 2%;
+}
+
+.comment-card .container-1 .dp {
+  width: 4%;
+  height: 5vh;
+  border-radius: 30%;
+}
+
+.comment-card .container-1 .name {
+  font-size: 0.9rem;
+  margin-left: 1%;
+}
+
+.comment-card .container-2 {
+  margin-left: 4%;
+  margin-bottom: 2%;
+}
+
+.comment-card .container-2 .description {
+  font-size: 0.8rem;
+  font-weight: normal;
 }
 
 .post-card .container-1 {
