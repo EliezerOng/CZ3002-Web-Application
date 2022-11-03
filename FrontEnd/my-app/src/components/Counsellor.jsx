@@ -11,7 +11,8 @@ export default function Counsellor(props) {
           props.address,
           props.languages,
           props.description,
-          props.image
+          props.image,
+          props.counsellorID
         )
       }
     >

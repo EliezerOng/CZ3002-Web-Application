@@ -27,7 +27,14 @@ export default function CounsellorList() {
   const [newPost, setNewPost] = useState([]);
   const [display, setDisplay] = useState([]);
 
-  function togglePopup(name, address, languages, description, image) {
+  function togglePopup(
+    name,
+    address,
+    languages,
+    description,
+    image,
+    counsellorID
+  ) {
     setIsOpen(!isOpen);
     setNewPost([]);
     setDisplay({
@@ -36,6 +43,7 @@ export default function CounsellorList() {
       languages: languages,
       description: description,
       image: image,
+      counsellorID: counsellorID,
     });
   }
   // const togglePopup = () => {
@@ -43,32 +51,13 @@ export default function CounsellorList() {
   //   setNewPost([]);
   // };
 
-  // to update title
-  function handleNewPost(event) {
-    const { name, value } = event.target;
-    // var coords = geocode(name);
-    setNewPost((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    console.log(newPost);
-  }
-
   const dataElements = data.map((data) => (
     <Counsellor {...data} handleClick={togglePopup} />
   ));
   return (
     <div className="counsellor-list">
       {dataElements}
-      {isOpen && (
-        <BookAppt
-          className="createPost"
-          info={newPost}
-          handleClose={togglePopup}
-          handleChange={handleNewPost}
-          display={display}
-        />
-      )}
+      {isOpen && <BookAppt handleClose={togglePopup} display={display} />}
     </div>
   );
 }

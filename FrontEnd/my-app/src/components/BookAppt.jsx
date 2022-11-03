@@ -34,6 +34,7 @@ function BookAppt(props) {
           <h1>counsellor details</h1>
           <img src={`./images/${props.display.image}`} alt="image" />
           <h2 className="popup-name">{props.display.name}</h2>
+          <h2>id: {props.display.counsellorID}</h2>
           <p>{props.display.address}</p>
           <p>Languages: {props.display.languages}</p>
           <p>{props.display.description}</p>
@@ -46,12 +47,8 @@ function BookAppt(props) {
             <h1>
               available slots for <span className="inlinedate">{mydate}</span>
             </h1>
-            <Timeslots date={mydate} name={props.display.name} />
+            <Timeslots date={mydate} id={props.display.counsellorID} />
           </div>
-
-          <button className="submitbtn2" onClick={props.handleUpdate}>
-            submit
-          </button>
         </div>
       </div>
     </div>
