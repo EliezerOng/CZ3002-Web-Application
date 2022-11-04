@@ -32,17 +32,12 @@ export default function ForumHeader() {
       title: newPost.title,
       content: newPost.content,
     };
-    Axios.post("http://127.0.0.1:8000/api/forum/posts", article, {
-      auth: {
-        username: "admin",
-        password: "admin123",
-      },
-    })
+    Axios.post("http://127.0.0.1:8000/api/forum/posts", article)
       .then((res) => {
         console.log("done posting");
       })
       .catch((err) => console.log(err));
-    window.location.reload();
+    //window.location.reload();
   }
 
   return (
