@@ -1,12 +1,13 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import mindfullLogo from "../images/mindfull-logo.png";
 import "./css/LoginRegister.css";
 
 const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
@@ -35,6 +36,7 @@ const Login = () => {
     setUser("");
     setPwd("");
     setSuccess(true);
+    navigate("/");
   };
 
   return (

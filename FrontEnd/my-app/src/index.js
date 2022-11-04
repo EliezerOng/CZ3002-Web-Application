@@ -6,7 +6,7 @@ import "./index.css";
 import SideBar from "./components/SideBar";
 import SideBarData from "./SideBarData";
 
-import Routes from "./Routes";
+import AllRoutes from "./AllRoutes";
 import { BrowserRouter as Router } from "react-router-dom";
 
 // ReactDOM.render(<App />, document.getElementById("root"));
@@ -17,7 +17,7 @@ ReactDOM.render(
   <Router>
     <div className="App">
       <sidebar className="sidebar">{sideBarData}</sidebar>
-      <Routes />
+      <AllRoutes />
     </div>
   </Router>,
   document.getElementById("root")

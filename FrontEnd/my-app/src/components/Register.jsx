@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./css/LoginRegister.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import mindfullLogo from "../images/mindfull-logo.png";
 
 // backend
@@ -29,6 +29,8 @@ const Register = () => {
   const userRef = useRef();
   //if get error, need put focus on that so it can be announced by screen reader for accessibility
   const errRef = useRef();
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState("");
   const [validName, setValidName] = useState(false);
@@ -86,35 +88,38 @@ const Register = () => {
       return;
     }
     //use axios here
-    // console.log(user, pwd);
-    // setSuccess(true);
-    try {
-      const response = await axios.post(
-        REGISTER_URL,
-        //  JSON.stringify({user: wtv backend expect, pwd: password})
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      //response from server
-      console.log(response.data);
-      //full response
-      console.log(JSON.stringify(response));
-      setSuccess(true);
-      //clear input fields
-    } catch (err) {
-      // ?. is optional chaining
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
-      } else {
-        setErrMsg("Registration Failed");
-      }
-      errRef.current.focus();
-    }
+    console.log(user, pwd);
+    setSuccess(true);
+    navigate("/Login");
+
+    // try {
+    //   const response = await axios.post(
+    //     REGISTER_URL,
+    //     //  JSON.stringify({user: wtv backend expect, pwd: password})
+    //     JSON.stringify({ user, pwd }),
+    //     {
+    //       headers: { "Content-Type": "application/json" },
+    //       withCredentials: true,
+    //     }
+    //   );
+    //   //response from server
+    //   console.log(response.data);
+    //   //full response
+    //   console.log(JSON.stringify(response));
+    //   setSuccess(true);
+    //   // navigate("/Login");
+    //   //clear input fields
+    // } catch (err) {
+    //   // ?. is optional chaining
+    //   if (!err?.response) {
+    //     setErrMsg("No Server Response");
+    //   } else if (err.response?.status === 409) {
+    //     setErrMsg("Username Taken");
+    //   } else {
+    //     setErrMsg("Registration Failed");
+    //   }
+    //   errRef.current.focus();
+    // }
   };
 
   return (

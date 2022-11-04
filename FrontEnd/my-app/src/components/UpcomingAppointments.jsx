@@ -1,9 +1,9 @@
 import React from "react";
 import UpcomingAppointmentCard from "./UpcomingAppointmentCard";
 import "./css/Appointment.css";
-import history from "../history";
 import Axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function UpcomingAppointments() {
   const [data, setData] = useState([]);
@@ -25,22 +25,21 @@ function UpcomingAppointments() {
     return <UpcomingAppointmentCard key={data.appointmentID} {...data} />;
   });
 
-  function redirectToCompleted() {
-    history.push("/CompletedAppointments");
-  }
-  function redirectToUpcoming() {
-    history.push("/UpcomingAppointments");
-  }
-
   return (
     <div className="upcoming appointment-page">
       <div className="toggle-buttons">
-        <button className="upcoming-button" onClick={redirectToUpcoming}>
+        <Link to="/UpcomingAppointments" className="upcoming-button">
           Upcoming
-        </button>
-        <button className="completed-button" onClick={redirectToCompleted}>
+        </Link>
+        {/* <button className="upcoming-button" onClick={redirectToUpcoming}>
+          Upcoming
+        </button> */}
+        <Link to="/CompletedAppointments" className="completed-button">
           Completed
-        </button>
+        </Link>
+        {/* <button className="completed-button" onClick={redirectToCompleted}>
+          Completed
+        </button> */}
       </div>
 
       <section className="appointment-card">{cards}</section>

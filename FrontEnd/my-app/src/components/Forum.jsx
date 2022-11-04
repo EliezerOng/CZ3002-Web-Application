@@ -3,13 +3,10 @@ import PostCard from "./PostCard";
 import ForumHeader from "./ForumHeader";
 import { useEffect, useState } from "react";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
 import IndivPost from "./IndivPost";
 import { Link } from "react-router-dom";
 
 export default function Forum() {
-  let history = useHistory();
-
   const [data, setData] = useState([]);
   const [isSingle, setIsSingle] = useState(false);
   const [singleData, setSingleData] = useState([]);
