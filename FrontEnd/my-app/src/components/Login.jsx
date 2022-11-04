@@ -1,10 +1,19 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import mindfullLogo from "../images/mindfull-logo.png";
 import "./css/LoginRegister.css";
+import useAuth from "../hooks/useAuth";
+
+import axios from "../api/axios";
+const LOGIN_URL = "/api/login";
 
 const Login = () => {
+  const { setAuth } = useAuth();
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
@@ -31,83 +40,93 @@ const Login = () => {
   const handleSubmit = async (e) => {
     // default is to reload the page
     e.preventDefault();
-    console.log(user, pwd);
-    //clear inputs
-    setUser("");
-    setPwd("");
-    setSuccess(true);
-    navigate("/");
+
+    try {
+      const response = await axios.post(LOGIN_URL, {
+        username: user,
+        password: pwd,
+      });
+      //clear inputs
+      console.log("json stringify data", JSON.stringify(response?.data));
+      const accessToken = JSON.stringify(response?.data);
+      console.log(".accesstoken:", accessToken);
+      setAuth({ user, pwd, accessToken });
+      setUser("");
+      setPwd("");
+      navigate(from, { replace: true });
+    } catch (err) {
+      //if no response but got error
+      if (!err?.response) {
+        setErrMsg("No server response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Unauthorised");
+      } else if (err.response?.status === 401) {
+        setErrMsg("Unauthorised");
+      } else {
+        setErrMsg("login failed");
+      }
+      errRef.current.focus();
+    }
   };
 
   return (
     <div className="login">
-      {success ? (
-        <section>
-          <h1> You are logged in!</h1>
-          <br />
-          <p>
-            {/* link to forum */}
-            <a href="/">Go to Home</a>
-          </p>
-        </section>
-      ) : (
-        <section class="login-boxes">
-          <div className="left-image">
-            <img src={mindfullLogo} className="mindfull-logo" />
-          </div>
-          {/*error msg display*/}
-          {/*aria-live=assertive: screen reader announce msg immediately when focus is set on this para*/}
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <div className="login-wrap">
-            <h1>Sign In</h1>
-            <form onSubmit={handleSubmit} className="login-form">
-              <label htmlFor="username" className="field-label">
-                Username:
-              </label>
-              <input
-                type="text"
-                id="username"
-                //set focus on this input
-                ref={userRef}
-                //dont fill username with past entries
-                autoComplete="off"
-                onChange={(e) => setUser(e.target.value)}
-                //to clear input upon submission
-                value={user}
-                required
-              />
+      <section class="login-boxes">
+        <div className="left-image">
+          <img src={mindfullLogo} className="mindfull-logo" />
+        </div>
+        {/*error msg display*/}
+        {/*aria-live=assertive: screen reader announce msg immediately when focus is set on this para*/}
+        <p
+          ref={errRef}
+          className={errMsg ? "errmsg" : "offscreen"}
+          aria-live="assertive"
+        >
+          {errMsg}
+        </p>
+        <div className="login-wrap">
+          <h1>Sign In</h1>
+          <form onSubmit={handleSubmit} className="login-form">
+            <label htmlFor="username" className="field-label">
+              Username:
+            </label>
+            <input
+              type="text"
+              id="username"
+              //set focus on this input
+              ref={userRef}
+              //dont fill username with past entries
+              autoComplete="off"
+              onChange={(e) => setUser(e.target.value)}
+              //to clear input upon submission
+              value={user}
+              required
+            />
 
-              <label htmlFor="password" className="field-label">
-                Password:
-              </label>
-              <input
-                type="password"
-                id="password"
-                //dont need set focus on pw directly
-                onChange={(e) => setPwd(e.target.value)}
-                //to clear input upon submission
-                value={pwd}
-                required
-              />
-              {/* dont need onclick bc its the only button in the form */}
-              <button className="sign-in">Sign In</button>
-            </form>
-            <p>
-              Need an Account?
-              <br />
-              <span className="line">
-                <Link to="/Register">Sign Up</Link>
-              </span>
-            </p>
-          </div>
-        </section>
-      )}
+            <label htmlFor="password" className="field-label">
+              Password:
+            </label>
+            <input
+              type="password"
+              id="password"
+              //dont need set focus on pw directly
+              onChange={(e) => setPwd(e.target.value)}
+              //to clear input upon submission
+              value={pwd}
+              required
+            />
+            {/* dont need onclick bc its the only button in the form */}
+            <button className="sign-in">Sign In</button>
+          </form>
+          <p>
+            Need an Account?
+            <br />
+            <span className="line">
+              <Link to="/Register">Sign Up</Link>
+            </span>
+          </p>
+        </div>
+      </section>
     </div>
   );
 };

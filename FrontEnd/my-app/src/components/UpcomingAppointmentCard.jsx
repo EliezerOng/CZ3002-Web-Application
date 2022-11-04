@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import "./css/AppointmentCard.css";
 import {
@@ -10,32 +11,33 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CancelAppointment from "./CancelAppointment";
 
+import useAuth from "../hooks/useAuth";
+
 const UpcomingAppointmentCard = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   // const [confirmDelete, setConfirmDelete] = useState(false);
-
   const togglePopup = () => {
     setIsOpen(!isOpen);
     // setConfirmDelete(false);
   };
+  const token = "448a26f1d7c3917af86a3fdc176767e167214166";
 
   function handleDelete(event) {
     // setConfirmDelete(true);
     // console.log("confirm delete: " + confirmDelete);
-
+    console.log("in handle delete", token);
     Axios.delete(
       `http://127.0.0.1:8000/api/appointment/upcoming/${props.appointmentID}`,
       {
-        auth: {
-          username: "admin",
-          password: "admin123",
-        },
+        headers: { Authorization: `Token ${token}` },
       }
     )
       .then((res) => {
         console.log("done deleting");
+        setIsOpen(false);
       })
       .catch((err) => console.log(err));
+
     window.location.reload();
   }
 
@@ -51,7 +53,7 @@ const UpcomingAppointmentCard = (props) => {
       </div>
       <div className="counsellor-address">
         <FontAwesomeIcon icon={faLocationDot} />
-        {props.address}
+        {props.counsellorAddress}
       </div>
       <div className="date-time">
         <div className="date">

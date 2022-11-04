@@ -11,7 +11,7 @@ import UpcomingAppointments from "./components/UpcomingAppointments";
 import PostCard from "./components/PostCard";
 import CompletedAppointments from "./components/CompletedAppointments";
 import IndivPost from "./components/IndivPost";
-
+import RequireAuth from "./components/RequireAuth";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default class AllRoutes extends Component {
@@ -27,11 +27,12 @@ export default class AllRoutes extends Component {
         <Routes>
           {/* <Route path="/" exact component={Forum} /> */}
           <Route path="/" exact element={<Forum />} />
-          <Route path="/IndivPost" element={<IndivPost />} />
-          <Route path="/CounsellorPage" element={<CounsellorPage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Forum" element={<Forum />} />
+          <Route path="/IndivPost" element={<IndivPost />} />
+
+          <Route path="/CounsellorPage" element={<CounsellorPage />} />
           <Route
             path="/UpcomingAppointments"
             element={<UpcomingAppointments />}
@@ -40,7 +41,6 @@ export default class AllRoutes extends Component {
             path="/CompletedAppointments"
             element={<CompletedAppointments />}
           />
-          <Route path="/Test" element={<Test />} />
         </Routes>
       </>
     );
