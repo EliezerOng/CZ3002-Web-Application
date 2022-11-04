@@ -1,6 +1,5 @@
 import React from "react";
 import UpcomingAppointmentCard from "./UpcomingAppointmentCard";
-import appointmentData from "./appointmentData";
 import "./css/Appointment.css";
 import history from "../history";
 import Axios from "axios";

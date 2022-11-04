@@ -12,16 +12,16 @@ import CancelAppointment from "./CancelAppointment";
 
 const UpcomingAppointmentCard = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
+  // const [confirmDelete, setConfirmDelete] = useState(false);
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
-    setConfirmDelete(false);
+    // setConfirmDelete(false);
   };
 
   function handleDelete(event) {
-    setConfirmDelete(true);
-    console.log("confirm delete: " + confirmDelete);
+    // setConfirmDelete(true);
+    // console.log("confirm delete: " + confirmDelete);
 
     Axios.delete(
       `http://127.0.0.1:8000/api/appointment/upcoming/${props.appointmentID}`,
@@ -36,7 +36,7 @@ const UpcomingAppointmentCard = (props) => {
         console.log("done deleting");
       })
       .catch((err) => console.log(err));
-    // window.location.reload();
+    window.location.reload();
   }
 
   return (
