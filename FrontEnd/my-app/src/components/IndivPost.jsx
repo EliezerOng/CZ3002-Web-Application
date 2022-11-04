@@ -52,12 +52,12 @@ const IndivPost = (props) => {
     const text = {
       content: temp,
     };
-    const headers = { Authorization: `Token ${token}` };
+    //const headers = { Authorization: `Token ${token}` };
 
-    Axios.post(postUrl, text, headers)
+    Axios.post(postUrl, text, { headers: { Authorization: `Token ${token}` } })
       .then((res) => {
         console.log("done posting");
-        Axios.get(url, headers)
+        Axios.get(url, { headers: { Authorization: `Token ${token}` } })
           .then((res) => {
             console.log("Getting from ::::", res.data);
             setData(res.data);

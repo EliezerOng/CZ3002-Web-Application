@@ -43,9 +43,11 @@ export default function PostDetail(props) {
       const newLikeCount = {
         likes: temp,
       };
-      const headers = { Authorization: `Token ${token}` };
+      //      const headers = { Authorization: `Token ${token}` };
 
-      Axios.post(postUrl, newLikeCount, headers)
+      Axios.post(postUrl, newLikeCount, {
+        headers: { Authorization: `Token ${token}` },
+      })
         .then((res) => {
           console.log("done posting");
         })
