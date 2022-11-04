@@ -5,15 +5,9 @@ import "./css/PostCard.css";
 import viewCountIcon from "../images/view-icon.png";
 import likeCountIcon from "../images/like-icon.png";
 import commentCounter from "../images/comment-icon.png";
-import { useParams } from "react-router-dom";
 
 export default function PostCard(props) {
-  const { pid } = useParams();
-
   return (
-    // <div>
-    //   <h1>{pid}</h1>
-    // </div>
     <div className="post-card" onClick={() => props.select(props.id)}>
       <div className="container-1">
         <div className="box-1">

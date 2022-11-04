@@ -93,7 +93,8 @@ def getnearest(request,obj):
     user_lat_lng = getcoordinates(obj)
     # print("success user_lat_lng")
     # print("Input address " + str(user_lat_lng))
-    queryset = Counsellor.objects.all() # Order the results
+    # Order the results
+    queryset = Counsellor.objects.all() 
     counsellor_address_list = []
     #print(queryset)
     for counsellor in queryset:
@@ -124,7 +125,7 @@ def getnearest(request,obj):
         print(sorted_counsellors[k][0].name)
     ordered_counsellors = {}
     for k,v in sorted_counsellors.items():
-        ordered_counsellors[v[0].counsellorID] = {"name": v[0].name, "description":v[0].description, "address":v[0].address, "images": v[0].images, "languages": v[0].languages, "distance":clone[v[0].postal_code]}
+        ordered_counsellors[v[0].counsellorID] = {"name": v[0].name, "description":v[0].description, "address":v[0].address, "images": v[0].images, "languages": v[0].languages, "lat":v[0].lat, "lng":v[0].lng ,"distance":clone[v[0].postal_code]}
     
     print(type(ordered_counsellors))
     print(ordered_counsellors)

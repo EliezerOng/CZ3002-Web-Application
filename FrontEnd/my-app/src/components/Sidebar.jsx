@@ -1,5 +1,8 @@
 import React from "react";
 import homelogo from "../images/house-solid.png";
+import counsellor from "../images/counsellor.png";
+import appointmentLogo from "../images/appointment-icon.png";
+import logoutLogo from "../images/logout-icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/SideBar.css";
 import { Link } from "react-router-dom";
@@ -24,7 +27,7 @@ export default function SideBar(props) {
 
           <Link to="/CounsellorPage" className="counsellor-box">
             <img
-              src={homelogo}
+              src={counsellor}
               alt="counsellor logo"
               className="counsellor-logo"
             />
@@ -33,7 +36,7 @@ export default function SideBar(props) {
 
           <Link to="/UpcomingAppointments" className="appointment-box">
             <img
-              src={homelogo}
+              src={appointmentLogo}
               alt="appointment logo"
               className="appointment-logo"
             />
@@ -42,10 +45,10 @@ export default function SideBar(props) {
         </div>
       </div>
       <div className="container-3">
-        <Link to="/Login" className="logout-box">
-          <img src={homelogo} alt="logout logo" className="logout-logo" />
+        <div className="logout-box" onClick={redirectLP}>
+          <img src={logoutLogo} alt="logout logo" className="logout-logo" />
           <h1>Logout</h1>
-        </Link>
+        </div>
       </div>
     </div>
   );
