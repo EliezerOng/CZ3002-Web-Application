@@ -17,6 +17,8 @@ class Appointment(models.Model):
         THREE_PM = "15:00"
         FOUR_PM = "16:00"
         FIVE_PM = "17:00"
+        SIX_PM = "18:00"
+        SEVEN_PM = "19:00"
     
     time = models.CharField(
         max_length = 100,
@@ -35,3 +37,5 @@ class Counsellor(models.Model):
     images = models.CharField(max_length=300)
     address = models.CharField(max_length=300)
     postal_code = models.CharField(max_length = 6)
+    lat = models.FloatField(null = True, blank = True,default = None)
+    lng = models.FloatField(null = True, blank = True,default = None)

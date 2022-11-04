@@ -6,7 +6,7 @@ class CounsellorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Counsellor
-        fields = ["counsellorID", "name", "languages", "description", "images", "address",] # Choose fields to display on restAPI
+        fields = ["counsellorID", "name", "languages", "description", "images", "address", "lat", "lng"] # Choose fields to display on restAPI
 
 # Create serializer for appointment model class
 class AppointmentSerializer(serializers.ModelSerializer):
@@ -28,14 +28,14 @@ class CompletedAppointmentSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Appointment
-        fields = ["appointmentID", "counsellorName", "date", "time",]
+        fields = ["appointmentID", "counsellorID", "counsellorName", "date", "time",]
 
 # Create serializer for upcoming appointments
 class UpcomingAppointmentSerializer(serializers.ModelSerializer):
     # This is how to access another model's attribute based on the foreign key
     counsellorName = serializers.CharField(source='counsellorID.name')
     counsellorAddress = serializers.CharField(source='counsellorID.address')
-    
+
     class Meta:
         model = Appointment
-        fields = ["appointmentID", "counsellorName", "date", "time", "counsellorAddress"]
+        fields = ["appointmentID", "counsellorID", "counsellorName", "date", "time", "counsellorAddress"]

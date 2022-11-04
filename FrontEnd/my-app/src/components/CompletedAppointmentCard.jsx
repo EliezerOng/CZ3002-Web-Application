@@ -20,10 +20,6 @@ const UpcomingAppointmentCard = (props) => {
         />
         <p className="counsellor-name">{props.counsellorName}</p>
       </div>
-      <div className="counsellor-address">
-        <FontAwesomeIcon icon={faLocationDot} />
-        {props.address}
-      </div>
       <div className="date-time">
         <div className="date">
           <FontAwesomeIcon icon={faCalendar} />

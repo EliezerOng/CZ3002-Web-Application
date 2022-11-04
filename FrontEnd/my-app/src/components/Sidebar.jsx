@@ -1,23 +1,13 @@
 import React from "react";
 import homelogo from "../images/house-solid.png";
+import counsellor from "../images/counsellor.png";
+import appointmentLogo from "../images/appointment-icon.png";
+import logoutLogo from "../images/logout-icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/SideBar.css";
-import history from "../history";
 import { Link } from "react-router-dom";
 
 export default function SideBar(props) {
-  function redirectCP() {
-    history.push("/CounsellorPage");
-  }
-  function redirectFP() {
-    history.push("/");
-  }
-  function redirectLP() {
-    history.push("/Login");
-  }
-  function redirectAP() {
-    history.push("/UpcomingAppointments");
-  }
   return (
     <div className="side-bar">
       <div className="container-12">
@@ -30,35 +20,35 @@ export default function SideBar(props) {
           </div>
         </div>
         <div className="container-2">
-          <div className="home-box" onClick={redirectFP}>
+          <Link to="/" className="home-box">
             <img src={homelogo} alt="home logo" className="home-logo" />
             <h1>Home</h1>
-          </div>
+          </Link>
 
-          <div className="counsellor-box" onClick={redirectCP}>
+          <Link to="/CounsellorPage" className="counsellor-box">
             <img
-              src={homelogo}
+              src={counsellor}
               alt="counsellor logo"
               className="counsellor-logo"
             />
             <h1>Counsellor</h1>
-          </div>
+          </Link>
 
-          <div className="appointment-box" onClick={redirectAP}>
+          <Link to="/UpcomingAppointments" className="appointment-box">
             <img
-              src={homelogo}
+              src={appointmentLogo}
               alt="appointment logo"
               className="appointment-logo"
             />
             <h1>Appointments</h1>
-          </div>
+          </Link>
         </div>
       </div>
       <div className="container-3">
-        <div className="logout-box" onClick={redirectLP}>
+        <Link to="/Login" className="logout-box">
           <img src={homelogo} alt="logout logo" className="logout-logo" />
           <h1>Logout</h1>
-        </div>
+        </Link>
       </div>
     </div>
   );

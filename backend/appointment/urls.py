@@ -20,6 +20,6 @@ urlpatterns = [
     # Delete upcoming appointment
     path("upcoming/<int:pk>", UpcomingAppointmentDestroyView.as_view()),
     
-    #path("counsellor/?address=235152")
+    #path("/api/appointment/counsellor/235152")
     path("counsellor/<str:obj>/", views.getnearest,name='getnearest')
 ]
