@@ -9,13 +9,19 @@ import Modal from "./Modal";
 
 export default function PostDetail(props) {
   function delePost() {
-    const url = "http://127.0.0.1:8000/api/forum/posts/19";
-    Axios.delete(url)
+    const url = `http://127.0.0.1:8000/api/forum/posts/${props.id}`;
+    const headers = {
+      auth: {
+        username: "admin",
+        password: "admin123",
+      },
+    };
+    Axios.delete(url, headers)
       .then((res) => {
         console.log("done deleting");
       })
       .catch((err) => console.log(err));
-    //window.location.reload();
+    window.location.reload();
   }
 
   const [isOpen, setIsOpen] = useState(false);
