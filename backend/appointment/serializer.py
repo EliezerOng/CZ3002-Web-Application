@@ -28,7 +28,7 @@ class CompletedAppointmentSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Appointment
-        fields = ["appointmentID", "counsellorName", "date", "time",]
+        fields = ["appointmentID", "counsellorID", "counsellorName", "date", "time",]
 
 # Create serializer for upcoming appointments
 class UpcomingAppointmentSerializer(serializers.ModelSerializer):
@@ -38,4 +38,4 @@ class UpcomingAppointmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
-        fields = ["appointmentID", "counsellorName", "date", "time", "counsellorAddress"]
+        fields = ["appointmentID", "counsellorID", "counsellorName", "date", "time", "counsellorAddress"]
