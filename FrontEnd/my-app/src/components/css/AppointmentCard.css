@@ -19,6 +19,7 @@
 .counsellor-pic {
   width: 4vw;
   height: 4vw;
+  border-radius: 100%;
 }
 
 .counsellor-name {
@@ -47,6 +48,7 @@
   border-radius: 3rem;
   padding: 0 1vw;
   margin-bottom: 3vh;
+  margin-top: 1vh;
 }
 
 .date,
@@ -64,4 +66,8 @@
   background-color: #90ee91;
   color: white;
   border-style: none;
+}
+
+.cancel-button:hover {
+  background-color: #72e063;
 }
