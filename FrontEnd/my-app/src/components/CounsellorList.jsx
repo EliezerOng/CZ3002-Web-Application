@@ -15,18 +15,33 @@ export default function CounsellorList(props) {
   // for getting from django db
   //
   const [data, setData] = useState([]);
+  const [locations, setLocations] = useState([]);
+
   useEffect(() => {
+    setLocations([]);
     Axios.get("http://127.0.0.1:8000/api/appointment/counsellor")
       .then((res) => {
         console.log("Getting from ::::", res.data);
         setData(res.data);
+        res.data.map((each) => {
+          let latlng = { lat: each.lat, lng: each.lng };
+          setLocations((old) => [...old, latlng]);
+        });
       })
       .catch((err) => console.log(err));
   }, []);
+  props.returnList(locations);
+
+  // useEffect(() => {
+  //   data.map(function (each) {
+  //     setLocations((old) => [...old, { lat: each.lat, lng: each.lng }]);
+  //   });
+  //   props.returnList(locations);
+  // }, [data]);
+
   useEffect(() => {
     setData(props.updatedData);
   }, [props.updatedData]);
-  console.log(data);
 
   // google maps api (ditch)
   //
@@ -34,7 +49,7 @@ export default function CounsellorList(props) {
   //   getCoords(data);
   //   props.returnList(locationdata);
   // }, []);
-
+  //
   // function getCoords(data) {
   //   setLocationData([]);
   //   data.map(function (d) {

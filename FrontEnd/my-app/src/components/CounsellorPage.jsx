@@ -69,8 +69,11 @@ function App() {
       });
   }
 
-  function returnList(locations) {
-    setLocations(locations);
+  function returnList(L) {
+    setLocations(L);
+    console.log("here");
+    console.log(L);
+    console.log(locations);
   }
   return (
     <div className="cApp">

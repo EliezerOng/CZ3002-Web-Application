@@ -17,6 +17,7 @@ export default function Map(props) {
   );
 
   console.log(props.location);
+
   const MyPins = props.location.map((pin) => (
     <LocationPin lat={pin.lat} lng={pin.lng} />
   ));
