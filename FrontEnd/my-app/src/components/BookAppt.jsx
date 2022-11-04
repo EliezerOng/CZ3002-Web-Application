@@ -63,7 +63,11 @@ function BookAppt(props) {
             <h2 className="smallheader">
               available slots for <span className="inlinedate">{mydate}</span>
             </h2>
-            <Timeslots date={mydate} id={props.display.counsellorID} />
+            <Timeslots
+              date={mydate}
+              id={props.display.counsellorID}
+              handleClose={props.handleClose}
+            />
           </div>
         </div>
       </div>

@@ -47,7 +47,7 @@ export default function Timeslots(props) {
     "18:00",
     "19:00",
   ];
-  const [types, setTypes] = useState(allslots);
+  const [types, setTypes] = useState([]);
 
   // RETRIEVING SLOTS
   // on initial render
@@ -64,47 +64,46 @@ export default function Timeslots(props) {
       .then((res) => {
         console.log("Getting from ::", res.data);
         setSlots(res.data);
+        setTypes(allslots);
+
+        if (res.data.length > 0) {
+          console.log("not empty");
+          res.data.map((s) => {
+            if (s.date == props.date) {
+              setTypes((current) => current.filter((slot) => slot !== s.time));
+            }
+          });
+        }
       })
       .catch((err) => console.log(err.res.data));
-
-    console.log(slots);
-    setTypes(allslots);
-    if (slots.length > 0) {
-      console.log("not empty");
-      slots.map((s) => {
-        if (s.date == props.date) {
-          setTypes((current) => current.filter((slot) => slot !== s.time));
-        }
-      });
-    }
-  }, []);
-  // on date change
-  useEffect(() => {
-    console.log(props.id);
-    const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
-    Axios.get(
-      `http://127.0.0.1:8000/api/appointment/counsellor/${props.id}/book`,
-      {
-        headers: { Authorization: `Token ${token}` },
-      }
-    )
-      .then((res) => {
-        console.log("Getting from ::", res.data);
-        setSlots(res.data);
-      })
-      .catch((err) => console.log(err.res.data));
-
-    console.log(slots);
-    setTypes(allslots);
-    if (slots.length > 0) {
-      console.log("not empty");
-      slots.map((s) => {
-        if (s.date == props.date) {
-          setTypes((current) => current.filter((slot) => slot !== s.time));
-        }
-      });
-    }
   }, [props]);
+  // on date change
+  // useEffect(() => {
+  //   console.log(props.id);
+  //   const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
+  //   Axios.get(
+  //     `http://127.0.0.1:8000/api/appointment/counsellor/${props.id}/book`,
+  //     {
+  //       headers: { Authorization: `Token ${token}` },
+  //     }
+  //   )
+  //     .then((res) => {
+  //       console.log("Getting from ::", res.data);
+  //       setSlots(res.data);
+  //     })
+  //     .catch((err) => console.log(err.res.data));
+
+  //   console.log(slots);
+  //   setTypes(allslots);
+  //   if (slots.length > 0) {
+  //     console.log("not empty");
+  //     slots.map((s) => {
+  //       if (s.date == props.date) {
+  //         setTypes((current) => current.filter((slot) => slot !== s.time));
+  //       }
+  //     });
+  //   }
+  // }, [props]);
 
   // const slotElements = slots.map(function (s) {
   //   if (s.counsellorID === props.id && s.date === props.date) {
@@ -169,7 +168,17 @@ export default function Timeslots(props) {
         console.log("done posting");
       })
       .catch((err) => console.log(err));
-    // window.location.reload();
+    handleButtonClick();
+  }
+
+  // added
+  const [isAlertVisible, setIsAlertVisible] = React.useState(false);
+  function handleButtonClick() {
+    setIsAlertVisible(true);
+    setTimeout(() => {
+      setIsAlertVisible(false);
+      props.handleClose();
+    }, 1000);
   }
 
   return (
@@ -184,6 +193,16 @@ export default function Timeslots(props) {
           submit
         </button>
       </div>
+      {/* added */}
+      {isAlertVisible && (
+        <div className="alert-container">
+          <div className="alert-inner">
+            YOU HAVE BOOKED
+            <h2 className="bk date">{active2} </h2>
+            <h2 className="bk time"> {active}</h2>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
