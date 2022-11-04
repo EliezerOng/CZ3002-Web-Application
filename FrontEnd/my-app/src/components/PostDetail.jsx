@@ -12,6 +12,7 @@ export default function PostDetail(props) {
   const [likeCount, setLikeCount] = useState(props.likes);
   const [pressOnce, setPressOnce] = useState(0);
   const [commentCounter, setCommentCounter] = useState(props.commentCount);
+  const token = "448a26f1d7c3917af86a3fdc176767e167214166";
 
   const styles = {
     backgroundColor: pressOnce ? "#24a0ed" : "none",
@@ -19,12 +20,8 @@ export default function PostDetail(props) {
 
   function delePost() {
     const url = `http://127.0.0.1:8000/api/forum/posts/${props.id}`;
-    const headers = {
-      auth: {
-        username: "admin",
-        password: "admin123",
-      },
-    };
+    const headers = { Authorization: `Token ${token}` };
+
     Axios.delete(url, headers)
       .then((res) => {
         console.log("done deleting");
@@ -46,12 +43,8 @@ export default function PostDetail(props) {
       const newLikeCount = {
         likes: temp,
       };
-      const headers = {
-        auth: {
-          username: "admin",
-          password: "admin123",
-        },
-      };
+      const headers = { Authorization: `Token ${token}` };
+
       Axios.post(postUrl, newLikeCount, headers)
         .then((res) => {
           console.log("done posting");
@@ -65,7 +58,9 @@ export default function PostDetail(props) {
   const url = `http://127.0.0.1:8000/api/forum/posts/${props.pid}`;
 
   useEffect(() => {
-    Axios.get(url)
+    Axios.get(url, {
+      headers: { Authorization: `Token ${token}` },
+    })
       .then((res) => {
         console.log("Getting from ::::", res.data);
         setData(res.data);

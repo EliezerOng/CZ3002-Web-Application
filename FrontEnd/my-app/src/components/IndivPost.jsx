@@ -11,9 +11,10 @@ const IndivPost = (props) => {
   const [commentString, setCommentString] = useState("");
   const [data, setData] = useState([]);
   const url = `http://127.0.0.1:8000/api/forum/posts/${props.pid}/comments`;
+  const token = "448a26f1d7c3917af86a3fdc176767e167214166";
 
   useEffect(() => {
-    Axios.get(url)
+    Axios.get(url, { headers: { Authorization: `Token ${token}` } })
       .then((res) => {
         console.log("Getting from ::::", res.data);
         setData(res.data);
@@ -46,20 +47,17 @@ const IndivPost = (props) => {
   function updateDatabase() {
     const postUrl = `http://127.0.0.1:8000/api/forum/posts/${props.pid}/comments`;
     const temp = commentString;
+    const token = "448a26f1d7c3917af86a3fdc176767e167214166";
+
     const text = {
       content: temp,
     };
-    const headers = {
-      auth: {
-        username: "admin",
-        password: "admin123",
-      },
-    };
+    const headers = { Authorization: `Token ${token}` };
 
     Axios.post(postUrl, text, headers)
       .then((res) => {
         console.log("done posting");
-        Axios.get(url)
+        Axios.get(url, headers)
           .then((res) => {
             console.log("Getting from ::::", res.data);
             setData(res.data);
