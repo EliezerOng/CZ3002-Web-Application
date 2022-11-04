@@ -26,7 +26,7 @@ export default class Routes extends Component {
         <Switch>
           {/* <Route path="/" exact component={Forum} /> */}
           <Route path="/" exact component={Forum} />
-          <Route path="/IndivPost" component={IndivPost} />
+          <Route path="/IndivPost" exact component={IndivPost} />
           <Route path="/CounsellorPage" component={CounsellorPage} />
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
