@@ -1,57 +1,63 @@
 import { useEffect, useState } from "react";
-import data2 from "../data";
+// import data2 from "../data";
 import Counsellor from "./Counsellor";
 import BookAppt from "./BookAppt";
 import Axios from "axios";
 
 export default function CounsellorList(props) {
-  // const [data, setData] = useState([]);
-  const [data, setData] = useState(data2);
-  const [locationdata, setLocationData] = useState([]);
-
-  // useEffect(() => {
-  //   Axios.get("http://127.0.0.1:8000/api/appointment/counsellor")
-  //     .then((res) => {
-  //       console.log("Getting from ::::", res.data);
-  //       setData(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  useEffect(() => {
-    getCoords(data);
-    console.log("inside");
-    console.log(locationdata);
-    props.returnList(locationdata);
-  }, []);
-  // console.log(data);
+  // const [data, setData] = useState(data2);
+  // const [locationdata, setLocationData] = useState(
+  //   data.map((each) => ({ lat: each.lat, lng: each.lng }))
+  // );
+  // props.returnList(locationdata);
   // console.log(locationdata);
 
-  function getCoords(data) {
-    setLocationData([]);
-    data.map(function (d) {
-      Axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-        params: {
-          address: d.address,
-          // API KEY !!! TO BE COMMENTED OUT
-          key: "AIzaSyAgUyxkZaBToNh8lpmhkrrxM-J3K5eNe-g",
-        },
+  // for getting from django db
+  //
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    Axios.get("http://127.0.0.1:8000/api/appointment/counsellor")
+      .then((res) => {
+        console.log("Getting from ::::", res.data);
+        setData(res.data);
       })
-        .then(function (response) {
-          // console.log(d.address);
-          // console.log(response.data.results[0].geometry.location.lng);
-          let item = {
-            id: d.id,
-            lat: response.data.results[0].geometry.location.lat,
-            lng: response.data.results[0].geometry.location.lng,
-          };
-          setLocationData((old) => [...old, item]);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    });
-  }
+      .catch((err) => console.log(err));
+  }, []);
+  useEffect(() => {
+    setData(props.updatedData);
+  }, [props.updatedData]);
+  console.log(data);
+
+  // google maps api (ditch)
+  //
+  // useEffect(() => {
+  //   getCoords(data);
+  //   props.returnList(locationdata);
+  // }, []);
+
+  // function getCoords(data) {
+  //   setLocationData([]);
+  //   data.map(function (d) {
+  //     Axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+  //       params: {
+  //         address: d.address,
+  //         // API KEY !!! TO BE COMMENTED OUT
+  //         key: "AIzaSyAgUyxkZaBToNh8lpmhkrrxM-J3K5eNe-g",
+  //       },
+  //     })
+  //       .then(function (response) {
+  //         let item = {
+  //           id: d.id,
+  //           lat: response.data.results[0].geometry.location.lat,
+  //           lng: response.data.results[0].geometry.location.lng,
+  //         };
+  //         setLocationData((old) => [...old, item]);
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
+  //   });
+  // }
 
   const [isOpen, setIsOpen] = useState(false);
   const [newPost, setNewPost] = useState([]);

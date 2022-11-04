@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/BookAppt.css";
-import slots from "../slots";
+// import slots from "../slots";
 import Axios from "axios";
 
 import styled from "styled-components";
@@ -39,7 +39,7 @@ export default function Timeslots(props) {
     "09:00",
     "10:00",
     "11:00",
-    "13:00",
+    "12:00",
     "14:00",
     "15:00",
     "16:00",
@@ -47,19 +47,77 @@ export default function Timeslots(props) {
     "18:00",
     "19:00",
   ];
-  var types = [];
-  types = allslots;
-  const slotElements = slots.map(function (s) {
-    if (s.counsellorID === props.id && s.date === props.date) {
-      let slotArray = s.slots;
-      types = [];
-      allslots.map(function (all) {
-        if (!slotArray.includes(all)) {
-          types.push(all);
+  const [types, setTypes] = useState(allslots);
+
+  // RETRIEVING SLOTS
+  // on initial render
+  const [slots, setSlots] = useState([]);
+  useEffect(() => {
+    console.log(props.id);
+    const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
+    Axios.get(
+      `http://127.0.0.1:8000/api/appointment/counsellor/${props.id}/book`,
+      {
+        headers: { Authorization: `Token ${token}` },
+      }
+    )
+      .then((res) => {
+        console.log("Getting from ::", res.data);
+        setSlots(res.data);
+      })
+      .catch((err) => console.log(err.res.data));
+
+    console.log(slots);
+    setTypes(allslots);
+    if (slots.length > 0) {
+      console.log("not empty");
+      slots.map((s) => {
+        if (s.date == props.date) {
+          setTypes((current) => current.filter((slot) => slot !== s.time));
         }
       });
     }
-  });
+  }, []);
+  // on date change
+  useEffect(() => {
+    console.log(props.id);
+    const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
+    Axios.get(
+      `http://127.0.0.1:8000/api/appointment/counsellor/${props.id}/book`,
+      {
+        headers: { Authorization: `Token ${token}` },
+      }
+    )
+      .then((res) => {
+        console.log("Getting from ::", res.data);
+        setSlots(res.data);
+      })
+      .catch((err) => console.log(err.res.data));
+
+    console.log(slots);
+    setTypes(allslots);
+    if (slots.length > 0) {
+      console.log("not empty");
+      slots.map((s) => {
+        if (s.date == props.date) {
+          setTypes((current) => current.filter((slot) => slot !== s.time));
+        }
+      });
+    }
+  }, [props]);
+
+  // const slotElements = slots.map(function (s) {
+  //   if (s.counsellorID === props.id && s.date === props.date) {
+  //     let slotArray = s.slots;
+  //     types = [];
+  //     allslots.map(function (all) {
+  //       if (!slotArray.includes(all)) {
+  //         types.push(all);
+  //       }
+  //     });
+  //   }
+  // });
+
   const [active, setActive] = useState([]);
   const [active2, setActive2] = useState([]);
   function ToggleGroup() {
@@ -93,19 +151,18 @@ export default function Timeslots(props) {
   //     }
   //   })
 
+  // ADDING BOOKING
   function handleUpdate() {
+    const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
     const article = {
-      date: active,
-      time: active2,
+      date: active2,
+      time: active,
     };
     Axios.post(
       `http://127.0.0.1:8000/api/appointment/counsellor/${props.id}/book`,
       article,
       {
-        auth: {
-          username: "admin",
-          password: "admin123",
-        },
+        headers: { Authorization: `Token ${token}` },
       }
     )
       .then((res) => {

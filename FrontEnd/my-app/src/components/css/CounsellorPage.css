@@ -74,6 +74,8 @@
 .pin-icon {
   width: 30px;
   color: red;
+  position: absolute;
+  transform: translate(-15px, -15px);
 }
 
 /* counsellor card */

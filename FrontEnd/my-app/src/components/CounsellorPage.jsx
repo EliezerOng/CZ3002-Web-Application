@@ -12,6 +12,7 @@ function App() {
 
   // const [searchLocation, setSearchLocation] = useState([]);
   const [searchLocation, setSearchLocation] = useState([]);
+  const [searchpostal, setSearchPostal] = useState();
   const [locations, setLocations] = useState([]);
 
   // useEffect(() => {
@@ -27,13 +28,23 @@ function App() {
       [name]: value,
     }));
   }
-  // to find coords & pass location into google maps
+  // to find coords & pass postal to backend
+  const [updatedData, setUpdatedData] = useState([]);
   function handleSearch(event) {
     // update coordinates
     geocode(searchLocation.address);
-    // pass into google maps
+    // send postal to backend
+    console.log(searchpostal);
+    Axios.get(
+      `http://127.0.0.1:8000/api/appointment/counsellor/${searchpostal}/`
+    )
+      .then((res) => {
+        console.log("Sorted data ::::", res.data);
+        // console.log(Object.values(res.data));
+        setUpdatedData(Object.values(res.data));
+      })
+      .catch((err) => console.log(err));
   }
-  console.log(searchLocation);
 
   function geocode(addr) {
     Axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
@@ -44,6 +55,9 @@ function App() {
       },
     })
       .then(function (response) {
+        setSearchPostal(
+          response.data.results[0].address_components[5].long_name
+        );
         setSearchLocation({
           address: addr,
           lat: response.data.results[0].geometry.location.lat,
@@ -56,10 +70,8 @@ function App() {
   }
 
   function returnList(locations) {
-    console.log("here");
     setLocations(locations);
   }
-  console.log(locations);
   return (
     <div className="cApp">
       <div className="right">
@@ -76,7 +88,7 @@ function App() {
         </div>
         {/* <h1 className="cn-text">counsellors nearby</h1> */}
         <div className="display">
-          <CounsellorList returnList={returnList} />
+          <CounsellorList returnList={returnList} updatedData={updatedData} />
           <Maps location={locations} zoomLevel={11} />
         </div>
       </div>

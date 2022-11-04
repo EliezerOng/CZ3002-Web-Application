@@ -28,15 +28,13 @@ export default function ForumHeader() {
   }
 
   function updateDatabase() {
+    const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
     const article = {
       title: newPost.title,
       content: newPost.content,
     };
     Axios.post("http://127.0.0.1:8000/api/forum/posts", article, {
-      auth: {
-        username: "admin",
-        password: "admin123",
-      },
+      headers: { Authorization: `Token ${token}` },
     })
       .then((res) => {
         console.log("done posting");
