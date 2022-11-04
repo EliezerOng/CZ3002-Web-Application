@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/IndivPost.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostDetail from "./PostDetail";
 import CommentsCard from "./CommentsCard";
 import tempDP from "../images/A.png";
@@ -9,6 +9,17 @@ import Axios from "axios";
 const IndivPost = (props) => {
   const [comment, setComment] = useState(props.comments);
   const [commentString, setCommentString] = useState("");
+  const [data, setData] = useState([]);
+  const url = `http://127.0.0.1:8000/api/forum/posts/${props.pid}/comments`;
+
+  useEffect(() => {
+    Axios.get(url)
+      .then((res) => {
+        console.log("Getting from ::::", res.data);
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   function handleGatherString(event) {
     const { value } = event.target;
@@ -30,12 +41,10 @@ const IndivPost = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("form submitted ");
-    console.log(comment["admin"]);
   }
 
   function updateDatabase() {
-    const url = "http://127.0.0.1:8000/api/forum/posts/1/comments";
+    const postUrl = "http://127.0.0.1:8000/api/forum/posts/1/comments";
     const temp = commentString;
     const text = {
       content: temp,
@@ -47,9 +56,15 @@ const IndivPost = (props) => {
       },
     };
 
-    Axios.post(url, text, headers)
+    Axios.post(postUrl, text, headers)
       .then((res) => {
         console.log("done posting");
+        Axios.get(url)
+          .then((res) => {
+            console.log("Getting from ::::", res.data);
+            setData(res.data);
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   }
@@ -57,18 +72,30 @@ const IndivPost = (props) => {
   console.log("@@@@@@@@@@@@@@");
   console.log(comment);
 
-  let kArr = Object.keys(comment);
-  let vArr = Object.values(comment);
-  let cArr = [];
+  // let kArr = Object.keys(comment);
+  // let vArr = Object.values(comment);
+  // let commentsCardArr = [];
 
-  for (let i = 0; i < kArr.length; i++) {
-    cArr.push(<CommentsCard key={i} name={kArr[i]} comments={vArr[i]} />);
-  }
+  // for (let i = 0; i < kArr.length; i++) {
+  //   commentsCardArr.push(
+  //     <CommentsCard
+  //       key={props.pid}
+  //       pid={props.pid}
+  //       name={kArr[i]}
+  //       comments={vArr[i]}
+  //     />
+  //   );
+  // }
+
+  const cCards = data.map((data) => {
+    return <CommentsCard key={data.cid} {...data} />;
+  });
 
   return (
     <div>
       <PostDetail key={props.pid} id={props.pid} {...props} />
-      <div>{cArr}</div>
+
+      <div>{cCards}</div>
 
       <form className="post-comment" onSubmit={handleSubmit}>
         <img src={tempDP} alt="tempDP" className="profile-pic image" />

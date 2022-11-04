@@ -9,7 +9,8 @@ import Modal from "./Modal";
 
 export default function PostDetail(props) {
   function delePost() {
-    Axios.post(`http://127.0.0.1:8000/api/forum/posts/${props.pid}`)
+    const url = "http://127.0.0.1:8000/api/forum/posts/19";
+    Axios.delete(url)
       .then((res) => {
         console.log("done deleting");
       })
