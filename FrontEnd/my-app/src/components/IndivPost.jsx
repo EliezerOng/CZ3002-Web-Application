@@ -44,7 +44,7 @@ const IndivPost = (props) => {
   }
 
   function updateDatabase() {
-    const postUrl = "http://127.0.0.1:8000/api/forum/posts/1/comments";
+    const postUrl = `http://127.0.0.1:8000/api/forum/posts/${props.pid}/comments`;
     const temp = commentString;
     const text = {
       content: temp,
@@ -71,21 +71,6 @@ const IndivPost = (props) => {
 
   console.log("@@@@@@@@@@@@@@");
   console.log(comment);
-
-  // let kArr = Object.keys(comment);
-  // let vArr = Object.values(comment);
-  // let commentsCardArr = [];
-
-  // for (let i = 0; i < kArr.length; i++) {
-  //   commentsCardArr.push(
-  //     <CommentsCard
-  //       key={props.pid}
-  //       pid={props.pid}
-  //       name={kArr[i]}
-  //       comments={vArr[i]}
-  //     />
-  //   );
-  // }
 
   const cCards = data.map((data) => {
     return <CommentsCard key={data.cid} {...data} />;

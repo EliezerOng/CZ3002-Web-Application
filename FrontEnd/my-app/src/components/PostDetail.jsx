@@ -3,11 +3,20 @@ import { useEffect, useState } from "react";
 import Axios from "axios";
 import viewCountIcon from "../images/view-icon.png";
 import likeCountIcon from "../images/like-icon.png";
-import commentCounter from "../images/comment-icon.png";
+import commentCounterIcon from "../images/comment-icon.png";
 import deleIcon from "../images/delete.png";
 import Modal from "./Modal";
 
 export default function PostDetail(props) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [likeCount, setLikeCount] = useState(props.likes);
+  const [pressOnce, setPressOnce] = useState(0);
+  const [commentCounter, setCommentCounter] = useState(props.commentCount);
+
+  const styles = {
+    backgroundColor: pressOnce ? "#24a0ed" : "none",
+  };
+
   function delePost() {
     const url = `http://127.0.0.1:8000/api/forum/posts/${props.id}`;
     const headers = {
@@ -24,11 +33,47 @@ export default function PostDetail(props) {
     window.location.reload();
   }
 
-  const [isOpen, setIsOpen] = useState(false);
-
   function openModal() {
     setIsOpen(!isOpen);
   }
+
+  function handleLikeCount(event) {
+    if (pressOnce == 0) {
+      setLikeCount((prevLikeCount) => prevLikeCount + 1);
+
+      const postUrl = `http://127.0.0.1:8000/api/forum/posts/${props.id}/likes`;
+      const temp = likeCount;
+      const newLikeCount = {
+        likes: temp,
+      };
+      const headers = {
+        auth: {
+          username: "admin",
+          password: "admin123",
+        },
+      };
+      Axios.post(postUrl, newLikeCount, headers)
+        .then((res) => {
+          console.log("done posting");
+        })
+        .catch((err) => console.log(err));
+      setPressOnce(1);
+    }
+  }
+
+  const [data, setData] = useState([]);
+  const url = `http://127.0.0.1:8000/api/forum/posts/${props.pid}`;
+
+  useEffect(() => {
+    Axios.get(url)
+      .then((res) => {
+        console.log("Getting from ::::", res.data);
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const comCounter = data["commentCount"];
 
   return (
     <div className="post-detail">
@@ -51,22 +96,23 @@ export default function PostDetail(props) {
             src={likeCountIcon}
             alt="like-count-icon"
             className="like-count-icon"
+            onClick={handleLikeCount}
+            style={styles}
           />
-          <h1 className="like-count-h1">{props.likes}</h1>
+          <h1 className="like-count-h1">{likeCount}</h1>
         </div>
         <div className="box-2">
           <img
-            src={commentCounter}
+            src={commentCounterIcon}
             alt="comment-counter"
             className="comment-counter-icon"
           />
-          <h1 className="comment-counter-h1">{props.commentCount}</h1>
+          <h1 className="comment-counter-h1">{comCounter}</h1>
         </div>
         <div className="box-3" onClick={openModal}>
           <img src={deleIcon} alt="deleteIcon" className="delete-icon" />
         </div>
       </div>
-
       {isOpen && <Modal delePost={delePost} openModal={openModal} />}
     </div>
   );
