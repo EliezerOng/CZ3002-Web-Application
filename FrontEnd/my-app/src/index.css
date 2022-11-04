@@ -12,9 +12,6 @@ body {
   flex-direction: row;
   justify-content: start;
 }
-/* .sidebar {
-  border: 2px solid blue;
-} */
 
 .App-logo {
   height: 40vmin;
