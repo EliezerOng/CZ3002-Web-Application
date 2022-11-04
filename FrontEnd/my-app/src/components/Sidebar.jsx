@@ -45,12 +45,8 @@ export default function SideBar(props) {
         </div>
       </div>
       <div className="container-3">
-        {/* <div className="logout-box" onClick={redirectLP}>
-          <img src={logoutLogo} alt="logout logo" className="logout-logo" />
-          <h1>Logout</h1>
-        </div> */}
         <Link to="/Login" className="logout-box">
-          <img src={logoutLogo} alt="logout logo" className="logout-logo" />
+          <img src={homelogo} alt="logout logo" className="logout-logo" />
           <h1>Logout</h1>
         </Link>
       </div>

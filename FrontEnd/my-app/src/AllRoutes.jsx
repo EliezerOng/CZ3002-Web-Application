@@ -26,12 +26,13 @@ export default class AllRoutes extends Component {
       <>
         <Routes>
           {/* <Route path="/" exact component={Forum} /> */}
-          <Route path="/" exact component={Forum} />
-          <Route path="/IndivPost" exact component={IndivPost} />
-          <Route path="/CounsellorPage" component={CounsellorPage} />
-          <Route path="/Login" component={Login} />
-          <Route path="/Register" component={Register} />
-          <Route path="/Forum" component={Forum} />
+          <Route path="/" exact element={<Forum />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Forum" element={<Forum />} />
+          <Route path="/IndivPost" element={<IndivPost />} />
+
+          <Route path="/CounsellorPage" element={<CounsellorPage />} />
           <Route
             path="/UpcomingAppointments"
             element={<UpcomingAppointments />}
