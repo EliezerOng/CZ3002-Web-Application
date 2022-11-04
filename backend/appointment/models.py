@@ -35,3 +35,5 @@ class Counsellor(models.Model):
     images = models.CharField(max_length=300)
     address = models.CharField(max_length=300)
     postal_code = models.CharField(max_length = 6)
+    lat = models.FloatField(null = True, blank = True,default = None)
+    lng = models.FloatField(null = True, blank = True,default = None)
