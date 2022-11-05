@@ -15,10 +15,6 @@ function App() {
   const [searchpostal, setSearchPostal] = useState();
   const [locations, setLocations] = useState([]);
 
-  // useEffect(() => {
-  //   setSearchLocation(location);
-  // }, []);
-
   // to update search location
   function handleLocation(event) {
     const { name, value } = event.target;
@@ -55,8 +51,10 @@ function App() {
       },
     })
       .then(function (response) {
+        console.log(response.data.results[0]);
+        let arraysize = response.data.results[0].address_components.length;
         setSearchPostal(
-          response.data.results[0].address_components[5].long_name
+          response.data.results[0].address_components[arraysize - 1].long_name
         );
         setSearchLocation({
           address: addr,
