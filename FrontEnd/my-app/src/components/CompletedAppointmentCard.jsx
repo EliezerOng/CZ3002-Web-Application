@@ -14,7 +14,7 @@ const UpcomingAppointmentCard = (props) => {
     <div className="card-wrapper">
       <div className="counsellor">
         <img
-          src={`./images/${props.image}`}
+          src={`./images/${props.counsellorID}.jpg`}
           className="counsellor-pic"
           alt="image"
         />

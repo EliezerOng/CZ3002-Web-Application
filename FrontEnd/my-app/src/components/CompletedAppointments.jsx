@@ -11,7 +11,7 @@ import useAuth from "../hooks/useAuth";
 
 function CompletedAppointments() {
   const [data, setData] = useState([]);
-  const token = "448a26f1d7c3917af86a3fdc176767e167214166";
+  const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
   console.log("logging token from appt pg");
   console.log(token);
 

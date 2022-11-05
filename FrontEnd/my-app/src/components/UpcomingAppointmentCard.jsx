@@ -20,7 +20,7 @@ const UpcomingAppointmentCard = (props) => {
     setIsOpen(!isOpen);
     // setConfirmDelete(false);
   };
-  const token = "448a26f1d7c3917af86a3fdc176767e167214166";
+  const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
 
   function handleDelete(event) {
     // setConfirmDelete(true);
@@ -45,7 +45,7 @@ const UpcomingAppointmentCard = (props) => {
     <div className="card-wrapper">
       <div className="counsellor">
         <img
-          src={`./images/${props.image}`}
+          src={`./images/${props.counsellorID}.jpg`}
           className="counsellor-pic"
           alt="image"
         />
