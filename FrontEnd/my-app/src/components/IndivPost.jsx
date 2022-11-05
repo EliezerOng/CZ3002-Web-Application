@@ -11,7 +11,7 @@ const IndivPost = (props) => {
   const [commentString, setCommentString] = useState("");
   const [data, setData] = useState([]);
   const url = `http://127.0.0.1:8000/api/forum/posts/${props.pid}/comments`;
-  const token = "448a26f1d7c3917af86a3fdc176767e167214166";
+  const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
 
   useEffect(() => {
     Axios.get(url, { headers: { Authorization: `Token ${token}` } })
@@ -47,7 +47,7 @@ const IndivPost = (props) => {
   function updateDatabase() {
     const postUrl = `http://127.0.0.1:8000/api/forum/posts/${props.pid}/comments`;
     const temp = commentString;
-    const token = "448a26f1d7c3917af86a3fdc176767e167214166";
+    const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
 
     const text = {
       content: temp,
@@ -91,7 +91,7 @@ const IndivPost = (props) => {
           className="send-comment"
           // NAME VALUE SHOULD BE = USER THAT IS CURRENTLY LOGGED IN
           // admin is used temporarily here first
-          name="admin"
+          name="nick"
           onClick={handleNewComment}
         >
           comment

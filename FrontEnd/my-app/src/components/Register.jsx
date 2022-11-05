@@ -12,7 +12,7 @@ import mindfullLogo from "../images/mindfull-logo.png";
 
 // backend
 import axios from "../api/axios";
-const REGISTER_URL = "/register";
+const REGISTER_URL = "/api/signup";
 
 // [a-zA-Z]: start with lower/uppercase letter
 // followed by 3-23 chars that is [a-zA-Z0-9-_] (letters, numbers, -, _)
@@ -88,38 +88,36 @@ const Register = () => {
       return;
     }
     //use axios here
-    console.log(user, pwd);
-    setSuccess(true);
-    navigate("/Login");
+    // console.log(user, pwd);
+    // setSuccess(true);
+    // navigate("/Login");
 
-    // try {
-    //   const response = await axios.post(
-    //     REGISTER_URL,
-    //     //  JSON.stringify({user: wtv backend expect, pwd: password})
-    //     JSON.stringify({ user, pwd }),
-    //     {
-    //       headers: { "Content-Type": "application/json" },
-    //       withCredentials: true,
-    //     }
-    //   );
-    //   //response from server
-    //   console.log(response.data);
-    //   //full response
-    //   console.log(JSON.stringify(response));
-    //   setSuccess(true);
-    //   // navigate("/Login");
-    //   //clear input fields
-    // } catch (err) {
-    //   // ?. is optional chaining
-    //   if (!err?.response) {
-    //     setErrMsg("No Server Response");
-    //   } else if (err.response?.status === 409) {
-    //     setErrMsg("Username Taken");
-    //   } else {
-    //     setErrMsg("Registration Failed");
-    //   }
-    //   errRef.current.focus();
-    // }
+    try {
+      const response = await axios.post(
+        REGISTER_URL,
+        //  JSON.stringify({user: wtv backend expect, pwd: password})
+        {
+          username: user,
+          password: pwd,
+        }
+      );
+      //response from server
+      console.log(response.data);
+      //full response
+      console.log(JSON.stringify(response));
+      navigate("/Login");
+      //clear input fields
+    } catch (err) {
+      // ?. is optional chaining
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Username Taken");
+      } else {
+        setErrMsg("Registration Failed");
+      }
+      errRef.current.focus();
+    }
   };
 
   return (

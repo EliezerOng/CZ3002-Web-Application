@@ -12,7 +12,7 @@ export default function PostDetail(props) {
   const [likeCount, setLikeCount] = useState(props.likes);
   const [pressOnce, setPressOnce] = useState(0);
   const [commentCounter, setCommentCounter] = useState(props.commentCount);
-  const token = "448a26f1d7c3917af86a3fdc176767e167214166";
+  const token = "22a1b17dec7ca0abc6f70cf47566f412a9ef4a10";
 
   const styles = {
     backgroundColor: pressOnce ? "#24a0ed" : "none",
