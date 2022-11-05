@@ -91,7 +91,7 @@ const IndivPost = (props) => {
           className="send-comment"
           // NAME VALUE SHOULD BE = USER THAT IS CURRENTLY LOGGED IN
           // admin is used temporarily here first
-          name="admin"
+          name="nick"
           onClick={handleNewComment}
         >
           comment
