@@ -1,8 +1,7 @@
 export default [
   {
     id: 1,
-    userName: "AnimatedFred",
+    userName: "Nick",
     displayPictureUrl: "https://i.imgflip.com/1g8my4.jpg",
-    email: "animated@demo.com",
   },
 ];
