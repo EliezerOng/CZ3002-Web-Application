@@ -1,6 +1,6 @@
 .side-bar {
   box-sizing: border-box;
-  width: min-content;
+  width: 17vw;
   height: 100vh;
   border-right: 1px solid rgba(124, 124, 122, 0.3);
   /* border: 2px solid red; */
