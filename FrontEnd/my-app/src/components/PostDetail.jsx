@@ -22,7 +22,9 @@ export default function PostDetail(props) {
     const url = `http://127.0.0.1:8000/api/forum/posts/${props.id}`;
     const headers = { Authorization: `Token ${token}` };
 
-    Axios.delete(url, headers)
+    Axios.delete(url, {
+      headers: { Authorization: `Token ${token}` },
+    })
       .then((res) => {
         console.log("done deleting");
       })
