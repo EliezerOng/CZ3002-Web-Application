@@ -48,7 +48,7 @@ function BookAppt(props) {
         </span>
         <div className="popup-left">
           <h1>counsellor details</h1>
-          <img src={`./images/${props.display.image}`} alt="image" />
+          <img src={`./images/${props.display.counsellorID}.jpg`} alt="image" />
           <h2 className="popup-name">{props.display.name}</h2>
           <h2>id: {props.display.counsellorID}</h2>
           <p>{props.display.address}</p>

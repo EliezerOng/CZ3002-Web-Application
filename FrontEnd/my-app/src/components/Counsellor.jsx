@@ -16,7 +16,6 @@ export default function Counsellor(props) {
         )
       }
     >
-      {/* <img src={props.image} alt="image" /> */}
       <img src={`./images/${props.counsellorID}.jpg`} alt="image" />
 
       <div className="ccard-info">
